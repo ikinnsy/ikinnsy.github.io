@@ -1,41 +1,41 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>
-            个人主页
-        </title>
+        <title>个人主页</title>
+
+        <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="./assets/css/reset.css">
+        <link rel="stylesheet" href="./assets/css/style.css">
+
+        <script src="./assets/js/main.js"  defer></script>
     </head>
 
     <body>
         <header>
-            <h1>
-                这是标题
+            <h1 id = "msg-test">
+                这是1级标题
             </h1>
         </header>
         <main>
             <div>
-                <p id = "msg-test">
-                    测试
-                </p>
+                <br>
+                <button class="btn-center"id="btn-test">测试</button>
             </div>
-            <button id="btn-test">
-                测试
-            </button>
-            <br>
-            <input type = "text" id = "input-username" placeholder="请输入账号">
-            <br>
-            <input type = "password" id = "input-password" placeholder="请输入密码">
-            <br>
-            <button id = "btn-clear">
-                清除
-            </button>
-            <button id="btn-confirm">
-                确认
-            </button>
+            <div class="login-box">
+                <p class="login-title">请输入账号和密码登录：</p>
+                <br>
+                <div class = "input-wrap"><label for ="input-username">账号：</label><input type = "text" id = "input-username" placeholder="请输入账号"></div>
+                <div class = "input-wrap"><label for="input-password">密码：</label><input type = "password" id = "input-password" placeholder="请输入密码"></div> 
+                <br>
+                <div class = "btn-wrap">
+                    <button class = "login-btns"id = "btn-clear">清除</button>
+                    <button class="login-btns"id= "btn-confirm">确认</button>
+                </div>
+            </div>
         </main>
-        <script src="./assets/js/main.js">
-        </script>
         
     </body>
 </html>

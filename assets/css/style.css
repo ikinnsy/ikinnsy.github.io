@@ -1,0 +1,135 @@
+/* 
+file = assets/css/style.css
+encoding = utf-8
+description = 网站主样式表
+*/
+
+/* ====== global styles ====== */
+body {
+  font-family: "Noto Sans", sans-serif; /* 字体 */
+  background-color: #f7f8fa;            /* 页面背景颜色 */
+  color: #333;                          /* 默认文字颜色 */
+  margin: 0;
+  padding: 0;
+}
+
+/* ====== titles ====== */
+h1 {
+  color: #0078d7;       /* 蓝色标题 */
+  text-align: center;   /* 居中对齐 */
+  margin-top: 50px;
+}
+h2 {
+  color: #0078d7;       /* 蓝色标题 */
+  text-align: center;   /* 居中对齐 */
+  margin-top: 50px;
+}
+h3 {
+  color: #0078d7;       /* 蓝色标题 */
+  text-align: center;   /* 居中对齐 */
+  margin-top: 50px;
+}
+
+
+/* ====== buttons ====== */
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #005bb5; /* 鼠标悬停时变色 */
+}
+.btn-center {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #0078d7;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input{
+    display: block;
+    margin: 0;
+    padding: 10px 20px;
+    border: 2px solid #0078d7;
+    border-radius: 6px;
+    font-size: 16px;
+}
+/* ====== paragraphs ====== */
+p{
+    text-align: center;
+    font-size: 16px;
+}
+
+
+/* ====== login box ====== */
+.login-box{
+    text-align: center;
+    border: 2px solid #0078d7;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    margin: 50px auto;
+    background-color: #ffffff;
+}
+
+.login-title {
+  text-align: center;   /* 水平居中 */
+  font-size: 18px;      /* 字体大一点 */
+  font-weight: bold;    /* 加粗 */
+  color: #0078d7;       /* 蓝色，与整体风格统一 */
+  margin-bottom: 10px;  /* 和下面输入框保持一点间距 */
+}
+
+.login-btns {
+    display: inline-block;
+    margin: 20px 10px; /* 左右留点间距 */
+    padding: 10px 20px;
+    background-color: #759bd4;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* 按钮间距 */
+}
+/* 单行输入框布局 —— 横排对齐关键 */
+.input-wrap {
+  display: flex;              /* 横向排列 */
+  align-items: center;        /* 垂直居中对齐（中线对齐） */
+  justify-content: flex-start;/* 从左到右排列，不自动拉开 */
+  margin: 8px 0;
+}
+
+/* 左侧标签 */
+.input-wrap label {
+  width: 60px;                /* 固定宽度，这样“账号”和“密码”能对齐 */
+  text-align: right;          /* 标签文字右对齐 */
+  margin-right: 10px;         /* 标签与输入框之间留点空隙 */
+  font-weight: bold;
+}
+
+/* 右侧输入框 */
+.input-wrap input {
+  flex: 1;                    /* 自动占满剩余空间 */
+  padding: 6px 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
