@@ -5,10 +5,10 @@
         "[TODO] JSON has no comment syntax, so the per-field markers live in the HTML files.",
         "[TODO] Each HTML file starts with an [EDIT MAP] comment listing its own fields.",
         "[TODO] projects.item1.* belongs to the commented-out card template in index.html.",
-        "[TODO] meta.*.description keys are not applied yet - attribute-level i18n is not implemented."
+        "[STRUCT] meta.*.description is applied through data-i18n-content on the <meta> tag."
     ],
 
-    "site.brand": "Your Name",
+    "site.brand": "Shenyan Jin",
 
     "common.skipLink": "Skip to content",
 
@@ -22,19 +22,19 @@
     "nav.langZh": "中文",
     "nav.langJa": "日本語",
 
-    "meta.home.title": "Home | Your Name",
+    "meta.home.title": "Home | Shenyan Jin",
     "meta.home.description": "Your personal homepage. Replace this description.",
-    "meta.about.title": "About | Your Name",
+    "meta.about.title": "About | Shenyan Jin",
     "meta.about.description": "About page. Replace this description.",
-    "meta.projects.title": "Projects | Your Name",
+    "meta.projects.title": "Projects | Shenyan Jin",
     "meta.projects.description": "Projects page. Replace this description.",
-    "meta.contact.title": "Contact | Your Name",
+    "meta.contact.title": "Contact | Shenyan Jin",
     "meta.contact.description": "Contact page. Replace this description.",
-    "meta.notFound.title": "Page not found | Your Name",
+    "meta.notFound.title": "Page not found | Shenyan Jin",
     "meta.notFound.description": "Page not found.",
 
-    "hero.avatarAlt": "Avatar of Your Name",
-    "hero.name": "Your Name",
+    "hero.avatarAlt": "Avatar of Shenyan Jin",
+    "hero.name": "Shenyan Jin",
     "hero.nickname": "Your Nickname",
     "hero.tagline": "Your tagline here",
     "hero.intro": "One short paragraph introducing yourself.",

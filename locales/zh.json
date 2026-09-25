@@ -5,10 +5,10 @@
         "[TODO] JSON 不支持注释，字段级标记请见各 HTML 文件。",
         "[TODO] 每个 HTML 文件开头的 [EDIT MAP] 注释列出了该页需要填写的字段。",
         "[TODO] projects.item1.* 对应 index.html 中被注释掉的作品卡片模板。",
-        "[TODO] meta.*.description 目前尚未生效：attribute 级 i18n 还未实现。"
+        "[STRUCT] meta.*.description 通过 <meta> 标签上的 data-i18n-content 生效。"
     ],
 
-    "site.brand": "你的名字",
+    "site.brand": "金申晏",
 
     "common.skipLink": "跳到主要内容",
 
@@ -22,19 +22,19 @@
     "nav.langZh": "中文",
     "nav.langJa": "日本語",
 
-    "meta.home.title": "首页 | 你的名字",
+    "meta.home.title": "首页 | 金申晏",
     "meta.home.description": "你的个人主页，请替换这段描述。",
-    "meta.about.title": "关于 | 你的名字",
+    "meta.about.title": "关于 | 金申晏",
     "meta.about.description": "关于页面，请替换这段描述。",
-    "meta.projects.title": "作品 | 你的名字",
+    "meta.projects.title": "作品 | 金申晏",
     "meta.projects.description": "作品页面，请替换这段描述。",
-    "meta.contact.title": "联系 | 你的名字",
+    "meta.contact.title": "联系 | 金申晏",
     "meta.contact.description": "联系页面，请替换这段描述。",
-    "meta.notFound.title": "页面不存在 | 你的名字",
+    "meta.notFound.title": "页面不存在 | 金申晏",
     "meta.notFound.description": "页面不存在。",
 
     "hero.avatarAlt": "你的头像",
-    "hero.name": "你的名字",
+    "hero.name": "金申晏",
     "hero.nickname": "你的昵称",
     "hero.tagline": "这里写一句话简介",
     "hero.intro": "这里写一段简短的自我介绍。",

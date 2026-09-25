@@ -5,10 +5,10 @@
         "[TODO] JSON にはコメント構文がないため、フィールド単位のマーカーは HTML 側にあります。",
         "[TODO] 各 HTML ファイルの先頭にある [EDIT MAP] コメントに入力項目が並んでいます。",
         "[TODO] projects.item1.* は index.html のコメントアウトされたカード雛形に対応します。",
-        "[TODO] meta.*.description はまだ適用されません。attribute 単位の i18n は未実装です。"
+        "[STRUCT] meta.*.description は <meta> タグの data-i18n-content で適用されます。"
     ],
 
-    "site.brand": "あなたの名前",
+    "site.brand": "金申晏",
 
     "common.skipLink": "本文へスキップ",
 
@@ -22,19 +22,19 @@
     "nav.langZh": "中文",
     "nav.langJa": "日本語",
 
-    "meta.home.title": "ホーム | あなたの名前",
+    "meta.home.title": "ホーム | 金申晏",
     "meta.home.description": "あなたの個人ページです。この説明文を置き換えてください。",
-    "meta.about.title": "自己紹介 | あなたの名前",
+    "meta.about.title": "自己紹介 | 金申晏",
     "meta.about.description": "自己紹介ページです。この説明文を置き換えてください。",
-    "meta.projects.title": "作品 | あなたの名前",
+    "meta.projects.title": "作品 | 金申晏",
     "meta.projects.description": "作品ページです。この説明文を置き換えてください。",
-    "meta.contact.title": "連絡 | あなたの名前",
+    "meta.contact.title": "連絡 | 金申晏",
     "meta.contact.description": "連絡ページです。この説明文を置き換えてください。",
-    "meta.notFound.title": "ページが見つかりません | あなたの名前",
+    "meta.notFound.title": "ページが見つかりません | 金申晏",
     "meta.notFound.description": "ページが見つかりません。",
 
     "hero.avatarAlt": "あなたのアイコン",
-    "hero.name": "あなたの名前",
+    "hero.name": "金申晏",
     "hero.nickname": "ニックネーム",
     "hero.tagline": "ここに一言プロフィールを書きます",
     "hero.intro": "ここに短い自己紹介を書きます。",
