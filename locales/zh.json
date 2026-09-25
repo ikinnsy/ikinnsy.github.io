@@ -16,6 +16,8 @@
     "nav.about": "关于",
     "nav.projects": "作品",
     "nav.contact": "联系",
+    "nav.mainLabel": "主导航",
+    "nav.langGroupLabel": "语言切换",
     "nav.langEn": "English",
     "nav.langZh": "中文",
     "nav.langJa": "日本語",
@@ -29,6 +31,7 @@
     "meta.contact.title": "联系 | 你的名字",
     "meta.contact.description": "联系页面，请替换这段描述。",
 
+    "hero.avatarAlt": "你的头像",
     "hero.name": "你的名字",
     "hero.nickname": "你的昵称",
     "hero.tagline": "这里写一句话简介",

@@ -16,6 +16,8 @@
     "nav.about": "自己紹介",
     "nav.projects": "作品",
     "nav.contact": "連絡",
+    "nav.mainLabel": "メインナビゲーション",
+    "nav.langGroupLabel": "言語",
     "nav.langEn": "English",
     "nav.langZh": "中文",
     "nav.langJa": "日本語",
@@ -29,6 +31,7 @@
     "meta.contact.title": "連絡 | あなたの名前",
     "meta.contact.description": "連絡ページです。この説明文を置き換えてください。",
 
+    "hero.avatarAlt": "あなたのアイコン",
     "hero.name": "あなたの名前",
     "hero.nickname": "ニックネーム",
     "hero.tagline": "ここに一言プロフィールを書きます",

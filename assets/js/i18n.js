@@ -13,10 +13,16 @@
 //   - the Japanese button had no click listener
 //   - the ?lang= value was never validated against the supported languages
 //
-// [TODO] Intentionally NOT implemented yet, planned for a later phase:
-//   - highlighting the active language button
-//   - translating attributes such as alt and aria-label
-//   - a <link rel="alternate"> setup that search engines can actually use
+// Attribute translation: any element may carry
+//   data-i18n-<attribute>="some.key"
+// and the matching attribute is filled from the locale file. Examples:
+//   data-i18n-alt="hero.avatarAlt"            -> sets alt
+//   data-i18n-aria-label="nav.mainLabel"      -> sets aria-label
+//   data-i18n-content="meta.home.description" -> sets content on a <meta> tag
+//
+// [TBD] Still open on purpose: all three languages share one URL, so the
+// <link rel="alternate"> tags in the HTML do not give real multi-language SEO.
+// Splitting the site into /zh/ and /ja/ paths is a separate decision.
 //
 // [EDIT] All strings live in ./locales/en.json, zh.json and ja.json.
 //        Keep the same key set in all three files.
@@ -65,23 +71,53 @@ async function loadTranslations(lang) {
     }
 }
 
-// Replace the text of every [data-i18n] element for the current language.
-// A key that is missing from the locale file keeps the HTML default, so text
-// never goes blank and a raw key is never shown to a visitor.
+const ATTRIBUTE_PREFIX = "data-i18n-"; // [STRUCT] plain data-i18n carries text
+
+// Replace the text and the translatable attributes of every marked element for
+// the current language.
+// A key that is missing from the locale file keeps whatever is already written
+// in the HTML, so nothing ever goes blank and a raw key is never shown.
 function updateContent() {
-    const current = translations[currentLang] || {};
+    const dictionary = translations[currentLang] || {};
 
-    document.querySelectorAll("[data-i18n]").forEach((element) => {
-        const key = element.getAttribute("data-i18n");
-        const value = current[key];
-        if (typeof value !== "string") return;
+    document.querySelectorAll("*").forEach((element) => {
+        // 1. text content, e.g. <title data-i18n="meta.home.title">
+        const textKey = element.getAttribute("data-i18n");
+        if (typeof dictionary[textKey] === "string") {
+            // textContent works for <title> as well as for normal elements.
+            element.textContent = dictionary[textKey];
+        }
 
-        // textContent works for <title> as well as for normal elements.
-        element.textContent = value;
+        // 2. attributes, e.g. data-i18n-alt / data-i18n-aria-label / data-i18n-content
+        element.getAttributeNames().forEach((name) => {
+            // "data-i18n" itself does not start with "data-i18n-", so it is skipped.
+            if (!name.startsWith(ATTRIBUTE_PREFIX)) return;
+
+            const targetAttribute = name.slice(ATTRIBUTE_PREFIX.length);
+            const value = dictionary[element.getAttribute(name)];
+            if (typeof value === "string") {
+                element.setAttribute(targetAttribute, value);
+            }
+        });
     });
 
     document.documentElement.lang = currentLang;
-    // [TODO] Mark the active language button here in a later phase.
+    markActiveLanguageButton();
+}
+
+// Show which language is selected. [STRUCT] The rule that reacts to this is
+// .lang-switcher button[aria-current="true"] in style.css.
+function markActiveLanguageButton() {
+    supportedLanguages.forEach((lang) => {
+        const button = document.getElementById(`lang-${lang}`);
+        if (!button) return;
+
+        if (lang === currentLang) {
+            button.setAttribute("aria-current", "true");
+        } else {
+            button.removeAttribute("aria-current");
+        }
+    });
 }
 
 // Switch language: remember the choice, make sure the file is loaded, redraw.
@@ -90,8 +126,25 @@ async function setLanguage(lang) {
 
     currentLang = lang;
     localStorage.setItem("userLang", lang);
+    syncLanguageToUrl();
     await loadTranslations(currentLang);
     updateContent();
+}
+
+// Put ?lang= into the address bar, so a copied link keeps the chosen language.
+// That is also the URL shape the <link rel="alternate"> tags already point at.
+// Only runs on an explicit switch, never on first load.
+function syncLanguageToUrl() {
+    if (!window.history || !window.history.replaceState) return;
+
+    try {
+        const url = new URL(window.location.href);
+        url.searchParams.set("lang", currentLang);
+        window.history.replaceState(null, "", url);
+    } catch (error) {
+        // Sandboxes and file:// pages may refuse this. Not worth breaking over.
+        console.warn("Could not set the ?lang= parameter:", error);
+    }
 }
 
 // Wire up the language buttons. Every supported language gets a listener, so

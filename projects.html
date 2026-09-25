@@ -10,7 +10,8 @@
 
         <!-- [EDIT] Search-result description, roughly 120-160 characters.
              i18n key: meta.projects.description -->
-        <meta name="description" content="Projects page. Replace this description.">
+        <meta name="description" content="Projects page. Replace this description."
+              data-i18n-content="meta.projects.description">
 
         <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
@@ -64,7 +65,7 @@
             <!-- [EDIT] Site brand / display name. i18n key: site.brand -->
             <p class="brand" data-i18n="site.brand">Your Name</p>
 
-            <nav aria-label="Main navigation">
+            <nav aria-label="Main navigation" data-i18n-aria-label="nav.mainLabel">
                 <ul>
                     <!-- [SYNC] Put aria-current="page" on the current page only. -->
                     <li><a href="./index.html" data-i18n="nav.home">Home</a></li>
@@ -74,11 +75,10 @@
                 </ul>
 
                 <!-- [SYNC] Language switcher: identical on all 4 pages.
-                     [TODO] The active button is not highlighted yet - i18n.js will
-                     set aria-current on it in a later phase.
-                     [TODO] Attribute-level i18n (aria-label, alt) is not supported by
-                     the current i18n.js, so aria-label stays in English. -->
-                <div class="lang-switcher" role="group" aria-label="Language">
+                     i18n.js marks the active button with aria-current="true", and
+                     style.css turns that into the highlighted state. -->
+                <div class="lang-switcher" role="group" aria-label="Language"
+                     data-i18n-aria-label="nav.langGroupLabel">
                     <button type="button" id="lang-en" data-lang="en" data-i18n="nav.langEn">English</button>
                     <button type="button" id="lang-zh" data-lang="zh" data-i18n="nav.langZh">Chinese</button>
                     <button type="button" id="lang-ja" data-lang="ja" data-i18n="nav.langJa">Japanese</button>
