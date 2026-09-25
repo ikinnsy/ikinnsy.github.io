@@ -1,35 +1,45 @@
 <!-- index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>个人主页</title>
+        <title>Home</title>
 
         <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" href="./assets/css/reset.css">
         <link rel="stylesheet" href="./assets/css/style.css">
 
+        <link rel="alternate" hreflang="zh"href="./index.html?lang=zh">
+        <link rel="alternate" hreflang="ja"href="./index.html?lang=ja">
+        <link rel="alternate" hreflang="x-default" href="./index.html">
+
         <script src="./assets/js/main.js"  defer></script>
+        <script src="./assets/js/i18n.js" defer></script>
     </head>
 
     <body>
         
         <header>
-            <h1 id = "msg-test">
-                这是1级标题
+            <h1 id = "msg-heading">
+                工事中
             </h1>
             <nav>
             <ul>
-            <li><a href="#homepage">Homepage</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="./index.html" data-i18n="home">Home</a></li>
+            <li><a href="./about.html" data-i18n="about">About</a></li>
+            <li><a href="./projects.html" data-i18n="projects">Projects</a></li>
+            <li><a href="./contact.html" data-i18n="contact">Contact</a></li>
             </ul>
+            <div class="lang-switcher">
+                <button id="lang-en"data-lang="en"data-i18n="english">English</button>
+                <button id="lang-zh"data-lang="zh"data-i18n="chinese">Chinese</button>
+                <button id="lang-ja"data-lang="ja"data-i18n="japanese">Japanese</button>
+            </div>
         </nav>
         </header>
         <main>
-            <section id="homepage">
+            <section id="home">
 
 
             <div>
@@ -48,25 +58,7 @@
                 </div>
             </div>
             </section>
-            <section id ="about">
-            test<br>
-            about<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-
-            </section>
-            <section id="projects">
-                test<br>
-            projects<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            </section>
-            <section id="contact">
-                test<br>
-            contact<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>
-            </section>
+            
         </main>
         
     </body>

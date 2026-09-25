@@ -1,44 +1,48 @@
 // assets/js/main.js
+//def
 const btnTest = document.getElementById("btn-test");
-const msgTest = document.getElementById("msg-test")
+const msgHeading = document.getElementById("msg-heading")
 const btnConfirm = document.getElementById("btn-confirm");
 const btnClear = document.getElementById("btn-clear");
 const inputUsername = document.getElementById("input-username");
 const inputPassword = document.getElementById("input-password");
+
+
+//tools functions 
 function print(n){
     console.log(n);
     return n
 }
 let flag = false
-msgTest.textContent="Hello World!";
-btnTest.textContent = "按下以查看";
+msgHeading.textContent="Hello World!";
+btnTest.textContent = "discover";
 btnTest.addEventListener("mousedown",()=>{
-    btnTest.textContent="松开以隐藏";
+    btnTest.textContent="hide";
     if (!flag){
-    msgTest.textContent="你好，世界！";
+    msgHeading.textContent="你好，世界！";
     }
 });
 btnTest.addEventListener("mouseup",()=>{
-    btnTest.textContent="按下以查看";
+    btnTest.textContent="discover";
     if (!flag){
-    msgTest.textContent="Hello World!";
+    msgHeading.textContent="Hello World!";
     }
 });
 
 let username,password;
 
 btnConfirm.addEventListener("click",async ()=>{
-    console.log("点击成功");
+
     const response = await fetch("./assets/data/data.json");
     const object = await response.json();
-    console.log("处理成功");
+
     username = inputUsername.value;
     password = inputPassword.value;
     if (username in object ) {
         if (password == object[username]){
             alert("登陆成功");
             flag =true
-            msgTest.textContent="你好，"+ username;
+            msgHeading.textContent="你好，"+ username;
         }else{
             alert("密码错误");
         }
