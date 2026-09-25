@@ -30,8 +30,8 @@
 // <link rel="alternate"> tags in the HTML do not give real multi-language SEO.
 // Splitting the site into /zh/ and /ja/ paths is a separate decision.
 //
-// [EDIT] All strings live in ./locales/en.json, zh.json and ja.json.
-//        Keep the same key set in all three files.
+// [STRUCT] All strings live in ./locales/en.json, zh.json and ja.json.
+//          Keep the same key set in all three files.
 
 const translations = {};                        // was "translation" - a typo
 const supportedLanguages = ["en", "zh", "ja"];  // [STRUCT] add a language here

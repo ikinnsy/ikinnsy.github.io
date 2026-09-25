@@ -99,7 +99,7 @@ p {
   text-align: left;
 }
 
-/* [TBD] The old file carried a global "input { border: 2px solid ... }" rule
+/* [STRUCT] The old file carried a global "input { border: 2px solid ... }" rule
    from the removed login form. Style inputs when you actually add one. */
 
 /* ==========================================================================
@@ -179,8 +179,7 @@ header nav a[aria-current="page"] {
   border-color: var(--color-accent);
 }
 
-/* [TODO] Not in use yet - i18n.js starts marking the active language button in
-   a later phase. */
+/* The active language button is marked by markActiveLanguageButton() in i18n.js. */
 .lang-switcher button[aria-current="true"] {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
