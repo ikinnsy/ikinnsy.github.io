@@ -25,6 +25,8 @@ anything that still needs input - see [Comment convention](#comment-convention).
 | `assets/js/i18n.js` | Translation loader for en / zh / ja. An array value picks one entry at random. |
 | `locales/en.json` `zh.json` `ja.json` | UI strings. Identical key sets in all three. |
 | `robots.txt` `sitemap.xml` | Crawler metadata |
+| `README.md` | How the site works |
+| `TODO.md` | Outstanding work, improvement directions, and whether the project can be paused |
 
 ## Previewing locally
 
