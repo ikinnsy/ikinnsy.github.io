@@ -5,12 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- [EDIT] Browser tab title. i18n key: meta.about.title -->
-        <title data-i18n="meta.about.title">About | Your Name</title>
+        <!-- The text in <title> and in content="" below is the no-JS fallback, so it
+             holds the English version. i18n keys: meta.about.title /
+             meta.about.description -->
+        <title data-i18n="meta.about.title">About | Shenyan Jin</title>
 
-        <!-- [EDIT] Search-result description, roughly 120-160 characters.
-             i18n key: meta.about.description -->
-        <meta name="description" content="About page. Replace this description."
+        <meta name="description"
+              content="About Shenyan Jin — undergraduate at Institute of Science Tokyo, interested in applied mathematics and mathematical modeling."
               data-i18n-content="meta.about.description">
 
         <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
@@ -32,29 +33,23 @@
     <body id="top">
 
         <!-- [EDIT MAP] ==========================================================
-             Everything on this page that still needs your input.
-             Status words are written WITHOUT brackets on purpose, so that
-               Select-String -Path about.html -Pattern '\[EDIT\]'
-             only matches the real field markers in this file.
+             Nothing on this page still needs input. The content is filled in.
 
-               key                       what it is                status
-               ------------------------- ------------------------- --------------
-               meta.about.title          browser tab title         EDIT, I18N
-               meta.about.description    search result summary     EDIT, I18N
-               site.brand                name / handle in header   EDIT, I18N
-               about.heading             page h1                   EDIT, I18N
-               about.bio                 bio paragraph             EDIT, I18N
-               about.skills.heading      skills heading            EDIT, I18N
-               about.skills.empty        skills empty state        EDIT, I18N
-               about.timeline.heading    timeline heading          EDIT, I18N
-               about.timeline.empty      timeline empty state      EDIT, I18N
-               timeline entries          real entries              TODO
+             To change any text, edit the value in locales/en.json, zh.json or ja.json -
+             not here. The English text inside the elements below is only the no-JS
+             fallback, so keep it in sync with locales/en.json when you change a value.
 
-             Markers: [EDIT] fill me in | [TODO] content comes later
-                      [TBD] intentionally undecided
-                      [I18N] must also exist in locales/en.json, zh.json, ja.json
-                      [SYNC] keep identical on every page
-                      [STRUCT] layout code - do not edit
+             If you add a NEW field, mark it [EDIT] here and in the body, then run
+               Select-String -Path *.html -Pattern '\[EDIT\]'
+             to list everything still outstanding.
+
+             Markers used across the site:
+               [EDIT]   you must fill this in (the current value is a fake placeholder)
+               [TODO]   structure is ready, content comes later
+               [TBD]    intentionally undecided
+               [I18N]   must also exist in locales/en.json, zh.json and ja.json
+               [SYNC]   keep identical on every page
+               [STRUCT] layout code - do not edit
              ==================================================================== -->
 
         <!-- [SYNC] Skip link - keep identical on every page. -->
@@ -64,7 +59,7 @@
              [EDIT] Only the aria-current attribute moves between pages. -->
         <header>
             <!-- [EDIT] Site brand / display name. i18n key: site.brand -->
-            <p class="brand" data-i18n="site.brand">Your Name</p>
+            <p class="brand" data-i18n="site.brand">Shenyan Jin</p>
 
             <nav aria-label="Main navigation" data-i18n-aria-label="nav.mainLabel">
                 <ul>
@@ -93,40 +88,45 @@
             <section id="bio">
                 <h1 data-i18n="about.heading">About</h1>
 
-                <!-- [EDIT] Two to four sentences. The short version lives on
-                     index.html. i18n key: about.bio -->
-                <p data-i18n="about.bio">Write two to four sentences about yourself here.</p>
+                <p data-i18n="about.bio">I'm from China and currently an undergraduate in the Department of Life Science and Technology, School of Life Science and Technology, Institute of Science Tokyo, Japan; I entered in 2025 and expect to graduate in March 2029. My current interests are applied mathematics and mathematical modeling, especially at the intersection of biology and mathematics. I'm compiling a handbook of undergraduate mathematics covering topics such as calculus, linear algebra, complex numbers, probability and statistics, and differential equations, which serves as both my study notes and an ongoing personal project. This site documents my learning process, and I'm open to conversations in related fields.</p>
             </section>
 
-            <!-- [STRUCT] Skills. Structure only for now. -->
+            <!-- [STRUCT] Skills. Label/value pairs: every label and every value is its
+                 own locale key (about.skills.*Label and about.skills.*). -->
             <section id="skills">
                 <h2 data-i18n="about.skills.heading">Skills</h2>
 
-                <!-- [TODO] Delete this empty state and add your own list once you
-                     know what to show. A simple <ul> works well here.
-                     i18n key: about.skills.empty -->
-                <p class="empty-state" data-i18n="about.skills.empty">Skills will be listed here.</p>
+                <dl class="skills-list">
+                    <div class="skill">
+                        <dt data-i18n="about.skills.programmingLabel">Programming</dt>
+                        <dd data-i18n="about.skills.programming">JavaScript, Python, R</dd>
+                    </div>
+                    <div class="skill">
+                        <dt data-i18n="about.skills.toolsLabel">Tools</dt>
+                        <dd data-i18n="about.skills.tools">LaTeX, Git, Markdown</dd>
+                    </div>
+                    <div class="skill">
+                        <dt data-i18n="about.skills.learningLabel">Currently learning</dt>
+                        <dd data-i18n="about.skills.learning">Haskell (basic), C (basic)</dd>
+                    </div>
+                    <div class="skill">
+                        <dt data-i18n="about.skills.spokenLabel">Spoken languages</dt>
+                        <dd data-i18n="about.skills.spoken">Chinese (Native), Japanese (Advanced), English (Working proficiency)</dd>
+                    </div>
+                </dl>
             </section>
 
-            <!-- [STRUCT] Timeline. Structure only - there are no real entries yet,
-                 and none may be invented. -->
+            <!-- [STRUCT] Timeline. One entry so far. To add another, copy the
+                 <article class="timeline-entry"> block and give it its own keys
+                 (about.timeline.item2.*) in all three locale files. -->
             <section id="timeline">
                 <h2 data-i18n="about.timeline.heading">Timeline</h2>
 
-                <!-- [TODO] Delete this empty state once you have real entries.
-                     i18n key: about.timeline.empty -->
-                <p class="empty-state" data-i18n="about.timeline.empty">No entries yet.</p>
-
-                <!-- [TODO] Entry template. Copy this whole block once per entry,
-                     uncomment it, and replace every placeholder value.
-                     The matching i18n keys (about.timeline.item1.*) already exist in
-                     locales/en.json, zh.json and ja.json.
                 <article class="timeline-entry">
-                    <p class="timeline-period" data-i18n="about.timeline.item1.period">20XX - 20XX</p>
-                    <h3 data-i18n="about.timeline.item1.title">Entry title</h3>
-                    <p data-i18n="about.timeline.item1.desc">Short description of this entry.</p>
+                    <p class="timeline-period" data-i18n="about.timeline.item1.period">2025 - 2029</p>
+                    <h3 data-i18n="about.timeline.item1.title">BSc, Department of Life Science and Technology, School of Life Science and Technology, Institute of Science Tokyo</h3>
+                    <p data-i18n="about.timeline.item1.desc">Expected graduation: March 2029. Interests: applied mathematics, mathematical modeling, and biology–mathematics intersections.</p>
                 </article>
-                -->
             </section>
         </main>
 
@@ -135,13 +135,12 @@
             <!-- [SYNC] The year is filled in by main.js. "2026" is the no-JS fallback. -->
             <p class="copyright">
                 <span data-year>2026</span> &copy;
-                <!-- [EDIT] Your name or handle. Reuses the site.brand key. -->
-                <span data-i18n="site.brand">Your Name</span>
+                <span data-i18n="site.brand">Shenyan Jin</span>
             </p>
 
-            <!-- [TODO] Optional: uncomment this line if you want a "last updated" note.
-            <p data-i18n="footer.updated">Last updated: TBD</p>
-            -->
+            <!-- [TODO] The date is not generated automatically. Update footer.updated in
+                 locales/en.json, zh.json and ja.json when you change the site. -->
+            <p data-i18n="footer.updated">Last updated: 2026-09-25</p>
 
             <a class="back-to-top" href="#top" data-i18n="footer.backToTop">Back to top</a>
         </footer>

@@ -5,10 +5,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- [EDIT] Browser tab title. i18n key: meta.notFound.title -->
-        <title data-i18n="meta.notFound.title">Page not found | Your Name</title>
+        <!-- The text in <title> and in content="" below is the no-JS fallback, so it
+             holds the English version. i18n keys: meta.notFound.title /
+             meta.notFound.description -->
+        <title data-i18n="meta.notFound.title">Page not found | Shenyan Jin</title>
 
-        <!-- [EDIT] Search-result description. i18n key: meta.notFound.description -->
         <meta name="description" content="Page not found."
               data-i18n-content="meta.notFound.description">
 
@@ -40,21 +41,17 @@
     <body id="top">
 
         <!-- [EDIT MAP] ==========================================================
-             Everything on this page that still needs your input.
-             Status words are written WITHOUT brackets on purpose, so that
-               Select-String -Path 404.html -Pattern '\[EDIT\]'
-             only matches the real field markers in this file.
+             Nothing on this page still needs input. The content is filled in.
 
-               key                       what it is                status
-               ------------------------- ------------------------- --------------
-               meta.notFound.title       browser tab title         EDIT, I18N
-               meta.notFound.description search result summary     EDIT, I18N
-               site.brand                name / handle in header   EDIT, I18N
-               notFound.heading          page h1                   EDIT, I18N
-               notFound.body             explanation text          EDIT, I18N
-               notFound.home             button label              EDIT, I18N
+             To change any text, edit the value in locales/en.json, zh.json or ja.json -
+             not here. The English text inside the elements below is only the no-JS
+             fallback, so keep it in sync with locales/en.json when you change a value.
 
-             Markers: [EDIT] fill me in | [TODO] content comes later
+             If you add a NEW field, mark it [EDIT] here and in the body, then run
+               Select-String -Path *.html -Pattern '\[EDIT\]'
+             to list everything still outstanding.
+
+             Markers used across the site:
                       [TBD] intentionally undecided
                       [I18N] must also exist in locales/en.json, zh.json, ja.json
                       [SYNC] keep identical on every page
@@ -72,7 +69,7 @@
              [EDIT] Only the aria-current attribute moves between pages. -->
         <header>
             <!-- [EDIT] Site brand / display name. i18n key: site.brand -->
-            <p class="brand" data-i18n="site.brand">Your Name</p>
+            <p class="brand" data-i18n="site.brand">Shenyan Jin</p>
 
             <nav aria-label="Main navigation" data-i18n-aria-label="nav.mainLabel">
                 <ul>
@@ -117,13 +114,12 @@
             <!-- [SYNC] The year is filled in by main.js. "2026" is the no-JS fallback. -->
             <p class="copyright">
                 <span data-year>2026</span> &copy;
-                <!-- [EDIT] Your name or handle. Reuses the site.brand key. -->
-                <span data-i18n="site.brand">Your Name</span>
+                <span data-i18n="site.brand">Shenyan Jin</span>
             </p>
 
-            <!-- [TODO] Optional: uncomment this line if you want a "last updated" note.
-            <p data-i18n="footer.updated">Last updated: TBD</p>
-            -->
+            <!-- [TODO] The date is not generated automatically. Update footer.updated in
+                 locales/en.json, zh.json and ja.json when you change the site. -->
+            <p data-i18n="footer.updated">Last updated: 2026-09-25</p>
 
             <a class="back-to-top" href="#top" data-i18n="footer.backToTop">Back to top</a>
         </footer>

@@ -1,11 +1,12 @@
 # ikinnsy.github.io
 
-A personal homepage skeleton: plain HTML, CSS and JavaScript. No framework, no
-build step, no dependencies. Published with GitHub Pages from the `main` branch.
+A personal homepage: plain HTML, CSS and JavaScript. No framework, no build step,
+no dependencies. Published with GitHub Pages from the `main` branch.
 
-**Everything in this repository is placeholder content.** There is no real name,
-project, link or contact detail in it yet. Every field that needs your input is
-marked with a comment - see [Comment convention](#comment-convention).
+All visitor-facing text lives in `locales/en.json`, `zh.json` and `ja.json`. The
+English text also appears inside the HTML as the no-JS fallback, so when you change
+a locale value, change the matching text in the HTML too. Comment markers flag
+anything that still needs input - see [Comment convention](#comment-convention).
 
 ## Files
 
@@ -13,9 +14,11 @@ marked with a comment - see [Comment convention](#comment-convention).
 | --- | --- |
 | `index.html` | Home: hero, short about, featured projects, contact call to action |
 | `about.html` | Bio, skills, timeline |
-| `projects.html` | Project list (empty state + commented-out card template) |
-| `contact.html` | E-mail and other links (all placeholders) |
+| `projects.html` | Project list |
+| `contact.html` | E-mail and other links |
 | `404.html` | Served by GitHub Pages for any unknown path |
+| `assets/img/favicon.ico` | Favicon |
+| `assets/img/avatar.jpg` | Portrait shown in the hero |
 | `assets/css/reset.css` | Reset. Unchanged since the first commit. |
 | `assets/css/style.css` | The only stylesheet: tokens plus numbered sections |
 | `assets/js/main.js` | Page behaviour (footer year). Every lookup is guarded. |
@@ -37,8 +40,8 @@ python -m http.server 8000     # then open http://localhost:8000/
 
 ## Comment convention
 
-Every page starts with an `[EDIT MAP]` comment listing the fields that still need
-input, so you do not have to read the whole file.
+Every page starts with an `[EDIT MAP]` comment. It says whether anything on that
+page still needs input, and lists the markers used across the site.
 
 | Marker | Meaning |
 | --- | --- |
@@ -73,7 +76,8 @@ changes there by hand.
 add a string:
 
 1. Add the key to **all three** files. English is the fallback, so a missing key
-   simply leaves the text already written in the HTML.
+   simply leaves the text already written in the HTML - and put the same English
+   text in the HTML, so visitors without JavaScript see the real text as well.
 2. In the HTML, use either `data-i18n="some.key"` for text, or
    `data-i18n-<attribute>="some.key"` for an attribute - for example
    `data-i18n-alt`, `data-i18n-aria-label` or `data-i18n-content` (on a `<meta>`).

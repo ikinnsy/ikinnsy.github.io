@@ -5,12 +5,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- [EDIT] Browser tab title. i18n key: meta.projects.title -->
-        <title data-i18n="meta.projects.title">Projects | Your Name</title>
+        <!-- The text in <title> and in content="" below is the no-JS fallback, so it
+             holds the English version. i18n keys: meta.projects.title /
+             meta.projects.description -->
+        <title data-i18n="meta.projects.title">Projects | Shenyan Jin</title>
 
-        <!-- [EDIT] Search-result description, roughly 120-160 characters.
-             i18n key: meta.projects.description -->
-        <meta name="description" content="Projects page. Replace this description."
+        <meta name="description"
+              content="An ongoing handbook of undergraduate mathematics, covering calculus, linear algebra, complex numbers, probability, and differential equations."
               data-i18n-content="meta.projects.description">
 
         <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
@@ -32,26 +33,23 @@
     <body id="top">
 
         <!-- [EDIT MAP] ==========================================================
-             Everything on this page that still needs your input.
-             Status words are written WITHOUT brackets on purpose, so that
-               Select-String -Path projects.html -Pattern '\[EDIT\]'
-             only matches the real field markers in this file.
+             Nothing on this page still needs input. The content is filled in.
 
-               key                       what it is                status
-               ------------------------- ------------------------- --------------
-               meta.projects.title       browser tab title         EDIT, I18N
-               meta.projects.description search result summary     EDIT, I18N
-               site.brand                name / handle in header   EDIT, I18N
-               projects.heading          page h1                   EDIT, I18N
-               projects.intro            intro paragraph           EDIT, I18N
-               projects.empty            empty state               EDIT, I18N
-               project cards             real project items        TODO
+             To change any text, edit the value in locales/en.json, zh.json or ja.json -
+             not here. The English text inside the elements below is only the no-JS
+             fallback, so keep it in sync with locales/en.json when you change a value.
 
-             Markers: [EDIT] fill me in | [TODO] content comes later
-                      [TBD] intentionally undecided
-                      [I18N] must also exist in locales/en.json, zh.json, ja.json
-                      [SYNC] keep identical on every page
-                      [STRUCT] layout code - do not edit
+             If you add a NEW field, mark it [EDIT] here and in the body, then run
+               Select-String -Path *.html -Pattern '\[EDIT\]'
+             to list everything still outstanding.
+
+             Markers used across the site:
+               [EDIT]   you must fill this in (the current value is a fake placeholder)
+               [TODO]   structure is ready, content comes later
+               [TBD]    intentionally undecided
+               [I18N]   must also exist in locales/en.json, zh.json and ja.json
+               [SYNC]   keep identical on every page
+               [STRUCT] layout code - do not edit
              ==================================================================== -->
 
         <!-- [SYNC] Skip link - keep identical on every page. -->
@@ -61,7 +59,7 @@
              [EDIT] Only the aria-current attribute moves between pages. -->
         <header>
             <!-- [EDIT] Site brand / display name. i18n key: site.brand -->
-            <p class="brand" data-i18n="site.brand">Your Name</p>
+            <p class="brand" data-i18n="site.brand">Shenyan Jin</p>
 
             <nav aria-label="Main navigation" data-i18n-aria-label="nav.mainLabel">
                 <ul>
@@ -84,36 +82,30 @@
             </nav>
         </header>
         <main id="main">
-            <!-- [STRUCT] Projects page: intro -> list.
-                 There are no real items yet, so the empty state below is what a
-                 visitor currently sees. -->
+            <!-- [STRUCT] Projects page: intro -> list. One entry so far. -->
 
             <section id="projects-intro">
                 <h1 data-i18n="projects.heading">Projects</h1>
 
-                <!-- [EDIT] One or two lines about what belongs on this page.
-                     i18n key: projects.intro -->
-                <p data-i18n="projects.intro">One or two lines about the work you want to show here.</p>
+                <p data-i18n="projects.intro">A selection of projects I’ve worked on across web, mobile, and other areas.</p>
             </section>
 
-            <!-- [STRUCT] Project list. Structure only. -->
+            <!-- [STRUCT] Project list. To add another, copy the
+                 <li class="project-card"> block and give it its own keys
+                 (projects.item2.*) in all three locale files. -->
             <section id="projects-list">
-                <!-- [TODO] Friendly empty state. Delete it once you have real items.
-                     i18n key: projects.empty -->
-                <p class="empty-state" data-i18n="projects.empty">Portfolio coming soon.</p>
-
-                <!-- [TODO] Card template. Copy this whole <li> once per project,
-                     uncomment the list, and replace every placeholder value.
-                     The matching i18n keys (projects.item1.*) already exist in
-                     locales/en.json, zh.json and ja.json.
                 <ul class="project-grid">
                     <li class="project-card">
-                        <h3 data-i18n="projects.item1.title">Project One</h3>
-                        <p data-i18n="projects.item1.desc">Short description of the project.</p>
-                        <p class="project-tech" data-i18n="projects.item1.tech">Tech stack: TBD</p>
-                        <a class="text-link" href="https://example.com" data-i18n="projects.item1.link">View project</a>
+                        <h3 data-i18n="projects.item1.title">Handbook of Undergraduate Mathematics</h3>
+                        <p data-i18n="projects.item1.desc">An ongoing handbook covering calculus, linear algebra, complex numbers, probability and statistics, and differential equations. Written in LaTeX and maintained in a private GitHub repository. Public release planned after completion.</p>
+                        <p class="project-tech" data-i18n="projects.item1.tech">LaTeX, Git / GitHub</p>
                     </li>
                 </ul>
+
+                <!-- [TODO] There is no public link yet because the repository is private.
+                     When you publish it, add a link and the projects.item1.link key:
+                    <a class="text-link" href="https://github.com/ikinnsy/REPO"
+                       data-i18n="projects.item1.link">View project</a>
                 -->
             </section>
         </main>
@@ -123,13 +115,12 @@
             <!-- [SYNC] The year is filled in by main.js. "2026" is the no-JS fallback. -->
             <p class="copyright">
                 <span data-year>2026</span> &copy;
-                <!-- [EDIT] Your name or handle. Reuses the site.brand key. -->
-                <span data-i18n="site.brand">Your Name</span>
+                <span data-i18n="site.brand">Shenyan Jin</span>
             </p>
 
-            <!-- [TODO] Optional: uncomment this line if you want a "last updated" note.
-            <p data-i18n="footer.updated">Last updated: TBD</p>
-            -->
+            <!-- [TODO] The date is not generated automatically. Update footer.updated in
+                 locales/en.json, zh.json and ja.json when you change the site. -->
+            <p data-i18n="footer.updated">Last updated: 2026-09-25</p>
 
             <a class="back-to-top" href="#top" data-i18n="footer.backToTop">Back to top</a>
         </footer>

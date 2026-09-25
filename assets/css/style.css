@@ -220,9 +220,9 @@ section {
   width: 120px;
   height: 120px;
   margin: 0 auto var(--space-md);
-  border: 2px dashed #9aa5b1; /* [TBD] placeholder look - swap in your image */
   border-radius: 50%;
-  background-color: var(--color-border);
+  /* object-fit keeps the photo from being stretched inside the circle */
+  object-fit: cover;
 }
 
 .nickname,
@@ -320,6 +320,29 @@ section {
   justify-content: center;
   gap: var(--space-md);
   margin-top: var(--space-md);
+}
+
+/* Skills: label + value pairs filled from about.skills.*.
+   Rendered as a <dl> so the label/value relationship is in the markup. */
+.skills-list {
+  margin-top: var(--space-md);
+}
+
+.skill {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-sm);
+  padding: var(--space-sm) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.skill dt {
+  min-width: 12rem;
+  font-weight: bold;
+}
+
+.skill dd {
+  flex: 1;
 }
 
 /* ==========================================================================
