@@ -1,5 +1,5 @@
 // assets/js/i18n.js
-// Translation loader for the homepage skeleton.
+// Translation loader for the homepage.
 //
 // [STRUCT] Architecture (kept from the original file, which was already sound):
 //   1. Work out which language to use.
@@ -19,6 +19,12 @@
 //   data-i18n-alt="hero.avatarAlt"            -> sets alt
 //   data-i18n-aria-label="nav.mainLabel"      -> sets aria-label
 //   data-i18n-content="meta.home.description" -> sets content on a <meta> tag
+//
+// An ARRAY value means "pick one at random", which is how the rotating motto on
+// the home page works:
+//   "home.mottos": ["Because it is there.", "Knowledge is power.", ...]
+// updateContent() runs exactly once per page load, so an array lands on a random
+// entry on every refresh - and again if the visitor switches language.
 //
 // [TBD] Still open on purpose: all three languages share one URL, so the
 // <link rel="alternate"> tags in the HTML do not give real multi-language SEO.
@@ -73,6 +79,22 @@ async function loadTranslations(lang) {
 
 const ATTRIBUTE_PREFIX = "data-i18n-"; // [STRUCT] plain data-i18n carries text
 
+// Turn a locale value into a string to apply.
+//   string -> used as is
+//   array  -> one random entry, which is what makes home.mottos rotate
+//   anything else (including a missing key) -> null, so the caller keeps the text
+//   already written in the HTML and nothing ever goes blank
+function resolveValue(value) {
+    if (typeof value === "string") return value;
+
+    if (Array.isArray(value) && value.length > 0) {
+        const index = Math.floor(Math.random() * value.length);
+        return String(value[index]);
+    }
+
+    return null;
+}
+
 // Replace the text and the translatable attributes of every marked element for
 // the current language.
 // A key that is missing from the locale file keeps whatever is already written
@@ -82,20 +104,21 @@ function updateContent() {
 
     document.querySelectorAll("*").forEach((element) => {
         // 1. text content, e.g. <title data-i18n="meta.home.title">
-        const textKey = element.getAttribute("data-i18n");
-        if (typeof dictionary[textKey] === "string") {
+        const textValue = resolveValue(dictionary[element.getAttribute("data-i18n")]);
+        if (textValue !== null) {
             // textContent works for <title> as well as for normal elements.
-            element.textContent = dictionary[textKey];
+            element.textContent = textValue;
         }
 
         // 2. attributes, e.g. data-i18n-alt / data-i18n-aria-label / data-i18n-content
+        // Arrays work here too, so a rotating value could fill an attribute.
         element.getAttributeNames().forEach((name) => {
             // "data-i18n" itself does not start with "data-i18n-", so it is skipped.
             if (!name.startsWith(ATTRIBUTE_PREFIX)) return;
 
             const targetAttribute = name.slice(ATTRIBUTE_PREFIX.length);
-            const value = dictionary[element.getAttribute(name)];
-            if (typeof value === "string") {
+            const value = resolveValue(dictionary[element.getAttribute(name)]);
+            if (value !== null) {
                 element.setAttribute(targetAttribute, value);
             }
         });

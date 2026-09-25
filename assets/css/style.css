@@ -3,9 +3,9 @@ file = assets/css/style.css
 encoding = utf-8
 description = 网站主样式表
 
-Layout, mobile first. Every rule in this file is used by index.html,
-about.html, projects.html or contact.html - the dead rules from the old
-login form and the .btn-center test button were removed in Phase 4.
+Layout, mobile first. Every rule in this file is used by one of the five pages
+(index, about, projects, contact, 404). The dead rules from the old login form,
+the .btn-center test button and the removed empty states are gone.
 */
 
 /* ==========================================================================
@@ -47,6 +47,11 @@ login form and the .btn-center test button were removed in Phase 4.
      target heading does not hide underneath the header. Adjust after looking
      at the page; overshooting leaves a small gap, which is harmless. */
   --header-offset: 150px;
+
+  /* [TBD] Home page cursor glow. Opacity is deliberately capped at 0.2 so the
+     blob stays decorative; see section 14 for why it can never sit over text. */
+  --glow-size: 340px;
+  --glow-opacity: 0.18;
 }
 
 /* ==========================================================================
@@ -205,6 +210,10 @@ main {
   max-width: var(--content-width);
   margin: 0 auto;
   padding: var(--space-lg) var(--space-md) var(--space-xl);
+  /* z-index 1 lifts the content above .cursor-glow (section 14), so the glow is
+     painted underneath it and can never reduce text contrast. */
+  position: relative;
+  z-index: 1;
 }
 
 /* Anchor links land below the sticky header instead of underneath it. */
@@ -279,9 +288,9 @@ section {
 }
 
 /* ==========================================================================
-   9. Content blocks used by the commented-out templates
-   [TODO] None of these are rendered yet. They are styled now so that
-   uncommenting a template in the HTML works without touching the CSS.
+   9. Content blocks
+   Project cards, timeline entries, skills and social links, as rendered by
+   projects.html, about.html and contact.html.
    ========================================================================== */
 .project-grid {
   display: grid;
@@ -346,25 +355,67 @@ section {
 }
 
 /* ==========================================================================
-   10. Empty states
-   Shown on purpose while a section has no real content yet, so a page reads as
-   "not finished" rather than as "broken".
+   10. Home navigation cards
+   The three cards on index.html. Each card is one <a>, so the whole card is
+   clickable and keyboard focusable. The arrow is drawn with ::after so it needs
+   no extra markup and no translation.
    ========================================================================== */
-.empty-state {
-  color: var(--color-text-muted);
-  font-style: italic;
+.nav-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-xl);
+  padding: 0;
+}
+
+.nav-card {
+  display: block;
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  text-decoration: none;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+/* Without this the global "p { text-align: left }" in section 2 would leave the
+   card text left-aligned while its heading stayed centred. */
+.nav-card h2,
+.nav-card p {
   text-align: center;
+}
+
+.nav-card h2 {
+  margin-top: 0;
+}
+
+.nav-card::after {
+  display: block;
+  margin-top: var(--space-sm);
+  color: var(--color-accent);
+  font-size: 1.25rem;
+  content: "\2192"; /* right arrow */
+}
+
+.nav-card:hover,
+.nav-card:focus-visible {
+  border-color: var(--color-accent);
+  background-color: var(--color-accent-soft);
 }
 
 /* ==========================================================================
    11. Footer
-   [SYNC] Must stay in step with the identical footer markup on all 4 pages.
+   [SYNC] Must stay in step with the identical footer markup on every page.
    ========================================================================== */
 footer {
   padding: var(--space-lg) var(--space-md);
   background-color: var(--color-bar-bg);
   color: var(--color-bar-text);
   text-align: center;
+  /* Same reason as main: keep the footer above .cursor-glow. */
+  position: relative;
+  z-index: 1;
 }
 
 footer p {
@@ -436,10 +487,51 @@ button:focus-visible {
   .project-grid {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
+
+  .nav-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (min-width: 1280px) {
   :root {
     --content-width: 1040px;
+  }
+}
+
+/* ==========================================================================
+   14. Cursor glow  [TBD]
+   A soft blob that trails the pointer on index.html. It sits at z-index 0 while
+   main and footer are lifted to z-index 1 (sections 6 and 11), so the glow is
+   always painted underneath the content and can never reduce text contrast.
+
+   It starts at opacity 0 and fades in on the first pointer move, so a touch
+   device never shows it parked in the top-left corner.
+   ========================================================================== */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: var(--glow-size);
+  height: var(--glow-size);
+  /* offset by half its size, so translate3d() can aim straight at the pointer */
+  margin: calc(var(--glow-size) / -2) 0 0 calc(var(--glow-size) / -2);
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-accent) 0%, transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cursor-glow.is-active {
+  opacity: var(--glow-opacity);
+}
+
+/* Honour the motion preference: no trailing animation at all. main.js also skips
+   wiring the effect up when this query matches, so this is belt and braces. */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-glow {
+    display: none;
   }
 }
