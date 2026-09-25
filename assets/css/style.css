@@ -50,7 +50,7 @@ the .btn-center test button and the removed empty states are gone.
 
   /* [TBD] Home page cursor glow. Opacity is deliberately capped at 0.2 so the
      blob stays decorative; see section 14 for why it can never sit over text. */
-  --glow-size: 340px;
+  --glow-size: 220px;
   --glow-opacity: 0.18;
 }
 
