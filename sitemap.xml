@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  [EDIT] Replace the host in every <loc> if you move to a custom domain.
+  [STRUCT] 404.html is deliberately absent: it must not be indexed.
+  [TODO] A <lastmod> per URL would be nice, but it goes stale unless it is
+         generated at build time, and this site has no build step.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://ikinnsy.github.io/</loc>
+    </url>
+    <url>
+        <loc>https://ikinnsy.github.io/about.html</loc>
+    </url>
+    <url>
+        <loc>https://ikinnsy.github.io/projects.html</loc>
+    </url>
+    <url>
+        <loc>https://ikinnsy.github.io/contact.html</loc>
+    </url>
+</urlset>

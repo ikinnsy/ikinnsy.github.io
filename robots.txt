@@ -1,0 +1,7 @@
+# robots.txt for https://ikinnsy.github.io/
+# [EDIT] Replace the sitemap host below if you move to a custom domain.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://ikinnsy.github.io/sitemap.xml

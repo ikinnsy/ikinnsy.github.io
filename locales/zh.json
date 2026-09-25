@@ -30,6 +30,8 @@
     "meta.projects.description": "作品页面，请替换这段描述。",
     "meta.contact.title": "联系 | 你的名字",
     "meta.contact.description": "联系页面，请替换这段描述。",
+    "meta.notFound.title": "页面不存在 | 你的名字",
+    "meta.notFound.description": "页面不存在。",
 
     "hero.avatarAlt": "你的头像",
     "hero.name": "你的名字",
@@ -65,6 +67,10 @@
     "contact.social.heading": "其他链接",
     "contact.social.empty": "链接待补充。",
     "contact.social.item1.label": "示例链接",
+
+    "notFound.heading": "页面不存在",
+    "notFound.body": "你访问的页面不存在，或者已经移走了。",
+    "notFound.home": "返回首页",
 
     "footer.backToTop": "返回顶部",
     "footer.updated": "最后更新：待定"

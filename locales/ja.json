@@ -30,6 +30,8 @@
     "meta.projects.description": "作品ページです。この説明文を置き換えてください。",
     "meta.contact.title": "連絡 | あなたの名前",
     "meta.contact.description": "連絡ページです。この説明文を置き換えてください。",
+    "meta.notFound.title": "ページが見つかりません | あなたの名前",
+    "meta.notFound.description": "ページが見つかりません。",
 
     "hero.avatarAlt": "あなたのアイコン",
     "hero.name": "あなたの名前",
@@ -65,6 +67,10 @@
     "contact.social.heading": "その他のリンク",
     "contact.social.empty": "リンクは後で追加します。",
     "contact.social.item1.label": "リンク例",
+
+    "notFound.heading": "ページが見つかりません",
+    "notFound.body": "お探しのページは存在しないか、移動しました。",
+    "notFound.home": "ホームへ戻る",
 
     "footer.backToTop": "トップへ戻る",
     "footer.updated": "最終更新：未定"

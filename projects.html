@@ -18,9 +18,9 @@
         <link rel="stylesheet" href="./assets/css/reset.css">
         <link rel="stylesheet" href="./assets/css/style.css">
 
-        <!-- [SYNC] Language alternates: identical on all 4 pages, except that the
-             path matches the current page. [TBD] See the note in index.html about
-             the single-URL limitation. -->
+        <!-- [SYNC] Language alternates - keep identical on every page, except that
+             the path matches the current page. [TBD] See README.md for why these
+             hreflang links do not yet give real multi-language SEO. -->
         <link rel="alternate" hreflang="zh" href="./projects.html?lang=zh">
         <link rel="alternate" hreflang="ja" href="./projects.html?lang=ja">
         <link rel="alternate" hreflang="x-default" href="./projects.html">
@@ -50,17 +50,15 @@
              Markers: [EDIT] fill me in | [TODO] content comes later
                       [TBD] intentionally undecided
                       [I18N] must also exist in locales/en.json, zh.json, ja.json
-                      [SYNC] must stay identical on all 4 pages
+                      [SYNC] keep identical on every page
                       [STRUCT] layout code - do not edit
              ==================================================================== -->
 
-        <!-- [SYNC] Skip link: identical on all 4 pages. -->
+        <!-- [SYNC] Skip link - keep identical on every page. -->
         <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
 
-        <!-- [SYNC] Header shell: must stay identical on all 4 pages.
-             [EDIT] Only the aria-current attribute moves between pages.
-             If you change this block, change it in index.html, about.html,
-             projects.html and contact.html as well. -->
+        <!-- [SYNC] Header shell - keep identical on every page.
+             [EDIT] Only the aria-current attribute moves between pages. -->
         <header>
             <!-- [EDIT] Site brand / display name. i18n key: site.brand -->
             <p class="brand" data-i18n="site.brand">Your Name</p>
@@ -74,7 +72,7 @@
                     <li><a href="./contact.html" data-i18n="nav.contact">Contact</a></li>
                 </ul>
 
-                <!-- [SYNC] Language switcher: identical on all 4 pages.
+                <!-- [SYNC] Language switcher - keep identical on every page.
                      i18n.js marks the active button with aria-current="true", and
                      style.css turns that into the highlighted state. -->
                 <div class="lang-switcher" role="group" aria-label="Language"
@@ -120,7 +118,7 @@
             </section>
         </main>
 
-        <!-- [SYNC] Footer shell: must stay identical on all 4 pages. -->
+        <!-- [SYNC] Footer shell - keep identical on every page. -->
         <footer>
             <!-- [SYNC] The year is filled in by main.js. "2026" is the no-JS fallback. -->
             <p class="copyright">

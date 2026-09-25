@@ -30,6 +30,8 @@
     "meta.projects.description": "Projects page. Replace this description.",
     "meta.contact.title": "Contact | Your Name",
     "meta.contact.description": "Contact page. Replace this description.",
+    "meta.notFound.title": "Page not found | Your Name",
+    "meta.notFound.description": "Page not found.",
 
     "hero.avatarAlt": "Avatar of Your Name",
     "hero.name": "Your Name",
@@ -65,6 +67,10 @@
     "contact.social.heading": "Elsewhere",
     "contact.social.empty": "Links will be added here.",
     "contact.social.item1.label": "Example link",
+
+    "notFound.heading": "Page not found",
+    "notFound.body": "The page you were looking for does not exist or has moved.",
+    "notFound.home": "Back to home",
 
     "footer.backToTop": "Back to top",
     "footer.updated": "Last updated: TBD"
