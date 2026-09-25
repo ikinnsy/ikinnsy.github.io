@@ -10,11 +10,10 @@ body {
   background-color: #f7f8fa;            /* 页面背景颜色 */
   color: #333;                          /* 默认文字颜色 */
   margin: 0;
-  padding-top: 60px;
 }
 /*header*/
 header {
-    position: fixed;      /* 固定在顶部 */
+    position: sticky;     /* 跟随滚动；不再需要用 body padding-top 硬编码补偿 */
     top: 0;
     width: 100%;
     background-color: #333;
@@ -52,9 +51,9 @@ header nav a:hover {
     background-color: #555;
 }
 
-body {
-    padding-top: 120px;   /* 留出固定导航高度 */
-}
+/* [STRUCT] A second, duplicate "body { padding-top: 120px }" rule used to live
+   here. It was removed: the two copies were fighting each other, and the header
+   is sticky now, so no fixed-offset compensation is needed at all. */
 
 html {
     scroll-behavior: smooth; /* 平滑滚动 */
@@ -209,4 +208,172 @@ p{
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 14px;
+}
+
+/* ==============================================================
+   Skeleton additions
+   [STRUCT] Minimal styling for the new shell (skip link, brand,
+   language switcher, page container, footer) plus the elements the
+   page skeletons use (.avatar, .btn, .empty-state, ...).
+   Without these the shell would render as unstyled text and the
+   language buttons would be invisible on the dark header.
+   [TODO] Phase 4 consolidates this with the rules above, removes the
+   now-unused .login-box / .login-btns / .btn-center / .input-wrap /
+   .btn-wrap blocks and the global input rule, unifies the two
+   conflicting nav link styles (white vs green), and adds the
+   responsive breakpoints.
+   ============================================================== */
+
+/* ---- skip link: off-screen until it receives keyboard focus ---- */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -9999px;
+  z-index: 2000;
+  padding: 10px 16px;
+  background-color: #0078d7;
+  color: #ffffff;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---- header brand / site name ---- */
+.brand {
+  color: #ffffff;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* ---- language switcher ----
+   [TODO] The [aria-current="true"] rule is not in use yet; i18n.js
+   starts marking the active button in a later phase. */
+.lang-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.lang-switcher button {
+  padding: 6px 12px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.lang-switcher button:hover {
+  background-color: #0078d7;
+}
+
+.lang-switcher button[aria-current="true"] {
+  background-color: #0078d7;
+  border-color: #0078d7;
+}
+
+/* ---- page container ----
+   Without this the content would run edge to edge. */
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+/* ---- hero ---- */
+.avatar {
+  display: block;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  border: 2px dashed #9aa5b1;
+  border-radius: 50%;
+  background-color: #dfe3e8;
+}
+
+.nickname,
+.tagline {
+  text-align: center;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+/* ---- buttons and links ----
+   [TODO] Deliberately simple. The visual style is still [TBD]. */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #0078d7;
+  color: #ffffff;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #005bb5;
+}
+
+.btn-secondary {
+  border: 2px solid #0078d7;
+  background-color: #ffffff;
+  color: #0078d7;
+}
+
+.btn-secondary:hover {
+  background-color: #e6f0fb;
+}
+
+.text-link {
+  color: #0078d7;
+  text-decoration: underline;
+}
+
+/* ---- empty states ----
+   Shown on purpose while a section has no real content yet, so the
+   page reads as "not finished" rather than as "broken". */
+.empty-state {
+  color: #6b7280;
+  font-style: italic;
+}
+
+/* ---- footer ---- */
+footer {
+  padding: 24px 16px;
+  background-color: #333333;
+  color: #ffffff;
+  text-align: center;
+}
+
+footer p {
+  margin: 4px 0;
+}
+
+.back-to-top {
+  display: inline-block;
+  margin-top: 8px;
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+/* ---- keyboard focus ----
+   The original stylesheet only had :hover states, which left keyboard
+   users with no visible focus indicator at all. */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #ffb703;
+  outline-offset: 2px;
 }

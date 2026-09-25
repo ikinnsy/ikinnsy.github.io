@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "[EDIT] Every value in this file is a placeholder. None of it is real data.",
+        "[EDIT] Keep exactly the same key set in en.json, zh.json and ja.json.",
+        "[TODO] JSON has no comment syntax, so the per-field markers live in the HTML files.",
+        "[TODO] Each HTML file starts with an [EDIT MAP] comment listing its own fields.",
+        "[TODO] projects.item1.* belongs to the commented-out card template in index.html.",
+        "[TODO] meta.*.description keys are not applied yet - attribute-level i18n is not implemented."
+    ],
+
+    "site.brand": "Your Name",
+
+    "common.skipLink": "Skip to content",
+    "common.placeholder": "This page is under construction.",
+
+    "nav.home": "Home",
+    "nav.about": "About",
+    "nav.projects": "Projects",
+    "nav.contact": "Contact",
+    "nav.langEn": "English",
+    "nav.langZh": "中文",
+    "nav.langJa": "日本語",
+
+    "meta.home.title": "Home | Your Name",
+    "meta.home.description": "Your personal homepage. Replace this description.",
+    "meta.about.title": "About | Your Name",
+    "meta.about.description": "About page. Replace this description.",
+    "meta.projects.title": "Projects | Your Name",
+    "meta.projects.description": "Projects page. Replace this description.",
+    "meta.contact.title": "Contact | Your Name",
+    "meta.contact.description": "Contact page. Replace this description.",
+
+    "hero.name": "Your Name",
+    "hero.nickname": "Your Nickname",
+    "hero.tagline": "Your tagline here",
+    "hero.intro": "One short paragraph introducing yourself.",
+    "hero.ctaProjects": "View Projects",
+    "hero.ctaContact": "Get in Touch",
+
+    "about.heading": "About",
+    "about.more": "Read more",
+
+    "projects.heading": "Projects",
+    "projects.empty": "Portfolio coming soon.",
+    "projects.item1.title": "Project One",
+    "projects.item1.desc": "Short description of the project.",
+    "projects.item1.tech": "Tech stack: TBD",
+    "projects.item1.link": "View project",
+
+    "contact.heading": "Contact",
+    "contact.emailNote": "My e-mail address is not public yet. The address below is a placeholder.",
+
+    "footer.backToTop": "Back to top",
+    "footer.updated": "Last updated: TBD"
+}

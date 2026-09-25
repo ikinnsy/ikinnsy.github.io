@@ -1,55 +1,31 @@
 // assets/js/main.js
-//def
-const btnTest = document.getElementById("btn-test");
-const msgHeading = document.getElementById("msg-heading")
-const btnConfirm = document.getElementById("btn-confirm");
-const btnClear = document.getElementById("btn-clear");
-const inputUsername = document.getElementById("input-username");
-const inputPassword = document.getElementById("input-password");
+// Page behaviour for the personal homepage skeleton.
+//
+// This file is loaded on all 4 pages, so every element lookup is guarded:
+// a missing element is skipped instead of throwing and killing the rest of
+// the script. (The previous version assumed every element existed and threw a
+// TypeError on about.html, projects.html and contact.html.)
+//
+// [STRUCT] Keep this file free of page-specific content. Anything that is text
+// belongs in the HTML plus locales/*.json, not here.
 
+// ---------------------------------------------------------------------------
+// Footer copyright year.
+// Reads the [data-year] element in the footer shell. If it is missing, the
+// value already written in the HTML is kept as a no-JS fallback.
+// ---------------------------------------------------------------------------
+function initYear() {
+    const yearEl = document.querySelector("[data-year]");
+    if (!yearEl) return;
 
-//tools functions 
-function print(n){
-    console.log(n);
-    return n
+    yearEl.textContent = String(new Date().getFullYear());
 }
-let flag = false
-msgHeading.textContent="Hello World!";
-btnTest.textContent = "discover";
-btnTest.addEventListener("mousedown",()=>{
-    btnTest.textContent="hide";
-    if (!flag){
-    msgHeading.textContent="你好，世界！";
-    }
+
+// ---------------------------------------------------------------------------
+// Bootstrap. Add future page behaviour inside this one listener.
+// ---------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+    initYear();
 });
-btnTest.addEventListener("mouseup",()=>{
-    btnTest.textContent="discover";
-    if (!flag){
-    msgHeading.textContent="Hello World!";
-    }
-});
-
-let username,password;
-
-btnConfirm.addEventListener("click",async ()=>{
-
-    const response = await fetch("./assets/data/data.json");
-    const object = await response.json();
-
-    username = inputUsername.value;
-    password = inputPassword.value;
-    if (username in object ) {
-        if (password == object[username]){
-            alert("登陆成功");
-            flag =true
-            msgHeading.textContent="你好，"+ username;
-        }else{
-            alert("密码错误");
-        }
-    } else{
-        alert("账户错误");
-    }
-})
-
 
 

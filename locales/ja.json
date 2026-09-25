@@ -1,6 +1,55 @@
 {
-    "home":"ホーム",
-    "about":"自己紹介",
-    "projects":"作品",
-    "contact":"連絡"
+    "_readme": [
+        "[EDIT] このファイルの値はすべてプレースホルダーです。実在する情報は含まれていません。",
+        "[EDIT] en.json、zh.json、ja.json で同じ key セットを保ってください。",
+        "[TODO] JSON にはコメント構文がないため、フィールド単位のマーカーは HTML 側にあります。",
+        "[TODO] 各 HTML ファイルの先頭にある [EDIT MAP] コメントに入力項目が並んでいます。",
+        "[TODO] projects.item1.* は index.html のコメントアウトされたカード雛形に対応します。",
+        "[TODO] meta.*.description はまだ適用されません。attribute 単位の i18n は未実装です。"
+    ],
+
+    "site.brand": "あなたの名前",
+
+    "common.skipLink": "本文へスキップ",
+    "common.placeholder": "このページは準備中です。",
+
+    "nav.home": "ホーム",
+    "nav.about": "自己紹介",
+    "nav.projects": "作品",
+    "nav.contact": "連絡",
+    "nav.langEn": "English",
+    "nav.langZh": "中文",
+    "nav.langJa": "日本語",
+
+    "meta.home.title": "ホーム | あなたの名前",
+    "meta.home.description": "あなたの個人ページです。この説明文を置き換えてください。",
+    "meta.about.title": "自己紹介 | あなたの名前",
+    "meta.about.description": "自己紹介ページです。この説明文を置き換えてください。",
+    "meta.projects.title": "作品 | あなたの名前",
+    "meta.projects.description": "作品ページです。この説明文を置き換えてください。",
+    "meta.contact.title": "連絡 | あなたの名前",
+    "meta.contact.description": "連絡ページです。この説明文を置き換えてください。",
+
+    "hero.name": "あなたの名前",
+    "hero.nickname": "ニックネーム",
+    "hero.tagline": "ここに一言プロフィールを書きます",
+    "hero.intro": "ここに短い自己紹介を書きます。",
+    "hero.ctaProjects": "作品を見る",
+    "hero.ctaContact": "連絡する",
+
+    "about.heading": "自己紹介",
+    "about.more": "もっと見る",
+
+    "projects.heading": "作品",
+    "projects.empty": "作品集は準備中です。",
+    "projects.item1.title": "プロジェクト1",
+    "projects.item1.desc": "プロジェクトの短い説明。",
+    "projects.item1.tech": "技術スタック：未定",
+    "projects.item1.link": "プロジェクトを見る",
+
+    "contact.heading": "連絡",
+    "contact.emailNote": "メールアドレスはまだ公開していません。下記はプレースホルダーです。",
+
+    "footer.backToTop": "トップへ戻る",
+    "footer.updated": "最終更新：未定"
 }

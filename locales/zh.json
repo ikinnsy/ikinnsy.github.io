@@ -1,0 +1,55 @@
+{
+    "_readme": [
+        "[EDIT] 本文件中的所有值均为占位内容，不含任何真实数据。",
+        "[EDIT] 请与 en.json、zh.json、ja.json 保持完全相同的 key 集合。",
+        "[TODO] JSON 不支持注释，字段级标记请见各 HTML 文件。",
+        "[TODO] 每个 HTML 文件开头的 [EDIT MAP] 注释列出了该页需要填写的字段。",
+        "[TODO] projects.item1.* 对应 index.html 中被注释掉的作品卡片模板。",
+        "[TODO] meta.*.description 目前尚未生效：attribute 级 i18n 还未实现。"
+    ],
+
+    "site.brand": "你的名字",
+
+    "common.skipLink": "跳到主要内容",
+    "common.placeholder": "本页面正在施工中。",
+
+    "nav.home": "首页",
+    "nav.about": "关于",
+    "nav.projects": "作品",
+    "nav.contact": "联系",
+    "nav.langEn": "English",
+    "nav.langZh": "中文",
+    "nav.langJa": "日本語",
+
+    "meta.home.title": "首页 | 你的名字",
+    "meta.home.description": "你的个人主页，请替换这段描述。",
+    "meta.about.title": "关于 | 你的名字",
+    "meta.about.description": "关于页面，请替换这段描述。",
+    "meta.projects.title": "作品 | 你的名字",
+    "meta.projects.description": "作品页面，请替换这段描述。",
+    "meta.contact.title": "联系 | 你的名字",
+    "meta.contact.description": "联系页面，请替换这段描述。",
+
+    "hero.name": "你的名字",
+    "hero.nickname": "你的昵称",
+    "hero.tagline": "这里写一句话简介",
+    "hero.intro": "这里写一段简短的自我介绍。",
+    "hero.ctaProjects": "查看作品",
+    "hero.ctaContact": "联系我",
+
+    "about.heading": "关于",
+    "about.more": "了解更多",
+
+    "projects.heading": "作品",
+    "projects.empty": "作品集即将上线。",
+    "projects.item1.title": "项目一",
+    "projects.item1.desc": "项目的简短描述。",
+    "projects.item1.tech": "技术栈：待定",
+    "projects.item1.link": "查看项目",
+
+    "contact.heading": "联系",
+    "contact.emailNote": "我的邮箱暂未公开，下方地址仅为占位示例。",
+
+    "footer.backToTop": "返回顶部",
+    "footer.updated": "最后更新：待定"
+}

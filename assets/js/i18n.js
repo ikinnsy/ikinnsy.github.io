@@ -1,81 +1,118 @@
 // assets/js/i18n.js
-const translation ={};
-let currentLang="en";
+// Translation loader for the homepage skeleton.
+//
+// [STRUCT] Architecture (kept from the original file, which was already sound):
+//   1. Work out which language to use.
+//   2. Fetch the matching JSON file from ./locales/.
+//   3. Replace the text of every element that carries a data-i18n attribute.
+//
+// Bugs fixed in this pass. The original file threw on load, so language
+// switching never worked at all:
+//   - "translation" was declared but "translations" was used everywhere
+//   - locale files were fetched from ./lang/ instead of ./locales/
+//   - the Japanese button had no click listener
+//   - the ?lang= value was never validated against the supported languages
+//
+// [TODO] Intentionally NOT implemented yet, planned for a later phase:
+//   - highlighting the active language button
+//   - translating attributes such as alt and aria-label
+//   - a <link rel="alternate"> setup that search engines can actually use
+//
+// [EDIT] All strings live in ./locales/en.json, zh.json and ja.json.
+//        Keep the same key set in all three files.
 
-function getPreferredLanguage(){
-    const urlParams =new URLSearchParams(window.location.search)
-    const langParam = urlParams.get("lang")
-    if (langParam){
-        return langParam
-    };
-    const storedLang = localStorage.getItem("userLang");
-    if (storedLang){
-        return storedLang
+const translations = {};                        // was "translation" - a typo
+const supportedLanguages = ["en", "zh", "ja"];  // [STRUCT] add a language here
+let currentLang = "en";
+
+// Fallback chain: ?lang= parameter, then the stored choice, then the browser
+// language, then English.
+function getPreferredLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get("lang");
+    if (supportedLanguages.includes(langParam)) {
+        return langParam;
     }
-    const browserLang = navigator.language.split('-')[0];
-    if (["en", "zh", "ja"].includes(browserLang)) {
+
+    const storedLang = localStorage.getItem("userLang");
+    if (supportedLanguages.includes(storedLang)) {
+        return storedLang;
+    }
+
+    const browserLang = (navigator.language || "en").split("-")[0];
+    if (supportedLanguages.includes(browserLang)) {
         return browserLang;
     }
-    return 'en';
+
+    return "en";
 }
+
+// Fetch a locale file once, then cache it.
 async function loadTranslations(lang) {
-    // 只有当该语言的翻译尚未加载时才去请求
-    if (!translations[lang]) {
-        try {
-            const response = await fetch(`./lang/${lang}.json`);
-            translations[lang] = await response.json();
-        } catch (error) {
-            console.error(`Error loading ${lang} translations:`, error);
-            // 如果加载失败，可以考虑使用 HTML 中的默认英文内容，或提供一个回退机制
+    if (translations[lang]) return;
+
+    try {
+        // [STRUCT] The locale files live in ./locales/, not ./lang/.
+        const response = await fetch(`./locales/${lang}.json`);
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
         }
+        translations[lang] = await response.json();
+    } catch (error) {
+        // A missing locale file must not break the page. The English text that
+        // is already written in the HTML simply stays visible.
+        console.error(`Could not load "${lang}" translations:`, error);
     }
 }
 
-// 3. 更新页面内容
+// Replace the text of every [data-i18n] element for the current language.
+// A key that is missing from the locale file keeps the HTML default, so text
+// never goes blank and a raw key is never shown to a visitor.
 function updateContent() {
-    const elementsToTranslate = document.querySelectorAll('[data-i18n]');
-    elementsToTranslate.forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        // 只有当当前语言的翻译存在，且有对应的key时才进行替换
-        if (translations[currentLang] && translations[currentLang][key]) {
-            if (element.tagName === 'TITLE') {
-                element.innerText = translations[currentLang][key];
-            } else {
-                element.textContent = translations[currentLang][key];
-            }
-        }
+    const current = translations[currentLang] || {};
+
+    document.querySelectorAll("[data-i18n]").forEach((element) => {
+        const key = element.getAttribute("data-i18n");
+        const value = current[key];
+        if (typeof value !== "string") return;
+
+        // textContent works for <title> as well as for normal elements.
+        element.textContent = value;
     });
 
     document.documentElement.lang = currentLang;
+    // [TODO] Mark the active language button here in a later phase.
 }
 
-// 4. 切换语言函数
+// Switch language: remember the choice, make sure the file is loaded, redraw.
 async function setLanguage(lang) {
-    if (currentLang === lang) return; // 避免重复切换
+    if (!supportedLanguages.includes(lang) || lang === currentLang) return;
+
     currentLang = lang;
-    localStorage.setItem('userLang', lang); // 存储用户选择
-    await loadTranslations(currentLang); // 确保当前语言翻译已加载
+    localStorage.setItem("userLang", lang);
+    await loadTranslations(currentLang);
     updateContent();
 }
 
-// 页面加载时初始化
-document.addEventListener('DOMContentLoaded', async () => {
-    currentLang = getPreferredLanguage(); // 根据优先级获取当前语言
+// Wire up the language buttons. Every supported language gets a listener, so
+// lang-ja works now too. Each lookup is guarded, so this file stays safe to
+// load on any page.
+function initLanguageButtons() {
+    supportedLanguages.forEach((lang) => {
+        const button = document.getElementById(`lang-${lang}`);
+        if (!button) return;
 
-    // 优先加载当前语言的翻译
-    await loadTranslations(currentLang);
-    // 也可以预加载所有语言，以便更快的切换
-    // 如果 currentLang 是 'en'，这里会加载 'en.json'，然后加载 'zh.json'
-    // 如果 currentLang 是 'zh'，这里会加载 'zh.json'，然后加载 'en.json'
-    if (currentLang === 'en') {
-        await loadTranslations('zh');
-    } else {
-        await loadTranslations('en');
-    }
+        button.addEventListener("click", () => setLanguage(lang));
+    });
+}
 
-    updateContent(); // 初始渲染
+document.addEventListener("DOMContentLoaded", async () => {
+    currentLang = getPreferredLanguage();
 
-    // 绑定语言切换按钮事件
-    document.getElementById('lang-en').addEventListener('click', () => setLanguage('en'));
-    document.getElementById('lang-zh').addEventListener('click', () => setLanguage('zh'));
+    // Preload every language so switching is instant. There are only three
+    // files and they are tiny.
+    await Promise.all(supportedLanguages.map((lang) => loadTranslations(lang)));
+
+    updateContent();
+    initLanguageButtons();
 });

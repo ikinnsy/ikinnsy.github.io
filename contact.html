@@ -1,36 +1,116 @@
 <!-- contact.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>About</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- [EDIT] Browser tab title. i18n key: meta.contact.title -->
+        <title data-i18n="meta.contact.title">Contact | Your Name</title>
+
+        <!-- [EDIT] Search-result description, roughly 120-160 characters.
+             i18n key: meta.contact.description -->
+        <meta name="description" content="Contact page. Replace this description.">
 
         <link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon">
 
         <link rel="stylesheet" href="./assets/css/reset.css">
         <link rel="stylesheet" href="./assets/css/style.css">
 
-        <script src="./assets/js/main.js"  defer></script>
+        <!-- [SYNC] Language alternates: identical on all 4 pages, except that the
+             path matches the current page. [TBD] See the note in index.html about
+             the single-URL limitation. -->
+        <link rel="alternate" hreflang="zh" href="./contact.html?lang=zh">
+        <link rel="alternate" hreflang="ja" href="./contact.html?lang=ja">
+        <link rel="alternate" hreflang="x-default" href="./contact.html">
+
+        <script src="./assets/js/main.js" defer></script>
+        <script src="./assets/js/i18n.js" defer></script>
     </head>
 
-    <body>
-        
+    <body id="top">
+
+        <!-- [EDIT MAP] ==========================================================
+             Everything on this page that still needs your input.
+             Status words are written WITHOUT brackets on purpose, so that
+               Select-String -Path contact.html -Pattern '\[EDIT\]'
+             only matches the real field markers in this file.
+
+               key                       what it is                status
+               ------------------------- ------------------------- --------------
+               meta.contact.title        browser tab title         EDIT, I18N
+               meta.contact.description  search result summary     EDIT, I18N
+               site.brand                name / handle in header   EDIT, I18N
+               contact.heading           page heading              EDIT, I18N
+               contact e-mail            mailto link value         EDIT
+               social links              outbound links            TODO
+
+             Markers: [EDIT] fill me in | [TODO] content comes later
+                      [TBD] intentionally undecided
+                      [I18N] must also exist in locales/en.json, zh.json, ja.json
+                      [SYNC] must stay identical on all 4 pages
+                      [STRUCT] layout code - do not edit
+             ==================================================================== -->
+
+        <!-- [SYNC] Skip link: identical on all 4 pages. -->
+        <a class="skip-link" href="#main" data-i18n="common.skipLink">Skip to content</a>
+
+        <!-- [SYNC] Header shell: must stay identical on all 4 pages.
+             [EDIT] Only the aria-current attribute moves between pages.
+             If you change this block, change it in index.html, about.html,
+             projects.html and contact.html as well. -->
         <header>
-            <h1 id = "msg-heading">
-                这是1级标题(施工中)
-            </h1>
-            <nav>
-            <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./about.html">About</a></li>
-            <li><a href="./projects.html">Projects</a></li>
-            <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
+            <!-- [EDIT] Site brand / display name. i18n key: site.brand -->
+            <p class="brand" data-i18n="site.brand">Your Name</p>
+
+            <nav aria-label="Main navigation">
+                <ul>
+                    <!-- [SYNC] Put aria-current="page" on the current page only. -->
+                    <li><a href="./index.html" data-i18n="nav.home">Home</a></li>
+                    <li><a href="./about.html" data-i18n="nav.about">About</a></li>
+                    <li><a href="./projects.html" data-i18n="nav.projects">Projects</a></li>
+                    <li><a href="./contact.html" data-i18n="nav.contact" aria-current="page">Contact</a></li>
+                </ul>
+
+                <!-- [SYNC] Language switcher: identical on all 4 pages.
+                     [TODO] The active button is not highlighted yet - i18n.js will
+                     set aria-current on it in a later phase.
+                     [TODO] Attribute-level i18n (aria-label, alt) is not supported by
+                     the current i18n.js, so aria-label stays in English. -->
+                <div class="lang-switcher" role="group" aria-label="Language">
+                    <button type="button" id="lang-en" data-lang="en" data-i18n="nav.langEn">English</button>
+                    <button type="button" id="lang-zh" data-lang="zh" data-i18n="nav.langZh">Chinese</button>
+                    <button type="button" id="lang-ja" data-lang="ja" data-i18n="nav.langJa">Japanese</button>
+                </div>
+            </nav>
         </header>
-        <main>
-            <h1>施工中</h1>
+        <main id="main">
+            <!-- [TODO] This page is still a placeholder. It gets the real contact
+                 details in a later phase. The address below is a fake placeholder:
+                 contact details are NOT public yet and must not be published. -->
+            <h1 data-i18n="contact.heading">Contact</h1>
+            <p class="empty-state" data-i18n="common.placeholder">This page is under construction.</p>
+            <!-- [EDIT] Replace example@email.com only when you decide to publish it.
+                 [TODO] A working contact form needs a backend or a third-party
+                 service - out of scope for this skeleton. -->
+            <p><a class="text-link" href="mailto:example@email.com">example@email.com</a></p>
         </main>
+
+        <!-- [SYNC] Footer shell: must stay identical on all 4 pages. -->
+        <footer>
+            <!-- [SYNC] The year is filled in by main.js. "2026" is the no-JS fallback. -->
+            <p class="copyright">
+                <span data-year>2026</span> &copy;
+                <!-- [EDIT] Your name or handle. Reuses the site.brand key. -->
+                <span data-i18n="site.brand">Your Name</span>
+            </p>
+
+            <!-- [TODO] Optional: uncomment this line if you want a "last updated" note.
+            <p data-i18n="footer.updated">Last updated: TBD</p>
+            -->
+
+            <a class="back-to-top" href="#top" data-i18n="footer.backToTop">Back to top</a>
+        </footer>
         
     </body>
 </html>
