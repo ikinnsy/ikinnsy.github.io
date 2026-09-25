@@ -1,298 +1,228 @@
-/* 
+/*
 file = assets/css/style.css
 encoding = utf-8
 description = 网站主样式表
+
+Layout, mobile first. Every rule in this file is used by index.html,
+about.html, projects.html or contact.html - the dead rules from the old
+login form and the .btn-center test button were removed in Phase 4.
 */
 
-/* ====== global styles ====== */
-body {
-  font-family: "Noto Sans", sans-serif; /* 字体 */
-  background-color: #f7f8fa;            /* 页面背景颜色 */
-  color: #333;                          /* 默认文字颜色 */
-  margin: 0;
-}
-/*header*/
-header {
-    position: sticky;     /* 跟随滚动；不再需要用 body padding-top 硬编码补偿 */
-    top: 0;
-    width: 100%;
-    background-color: #333;
-    z-index: 1000;
-    padding: 10px 0;
+/* ==========================================================================
+   1. Tokens  [TBD]
+   The visual identity is still undecided. Everything below is a neutral
+   placeholder: change a value here and the whole site follows.
+   ========================================================================== */
+:root {
+  /* colours */
+  --color-bg: #f7f8fa;
+  --color-surface: #ffffff;
+  --color-text: #333333;
+  --color-text-muted: #6b7280;
+  --color-border: #dfe3e8;
+  --color-accent: #0078d7;
+  --color-accent-hover: #005bb5;
+  --color-accent-soft: #e6f0fb;
+  --color-bar-bg: #333333;
+  --color-bar-text: #ffffff;
+  --color-bar-hover: #555555;
+  --color-focus: #ffb703;
+
+  /* Typography: no web font is loaded, on purpose (zero dependencies).
+     The old file named "Noto Sans" without ever loading it, so it silently
+     fell back anyway. It stays in the stack for people who have it installed. */
+  --font-body: system-ui, -apple-system, "Segoe UI", "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-size-base: 16px;
+
+  /* layout */
+  --content-width: 960px;
+  --radius: 6px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 48px;
+
+  /* [TBD] Approximate height of the sticky header. Anchor links use it so a
+     target heading does not hide underneath the header. Adjust after looking
+     at the page; overshooting leaves a small gap, which is harmless. */
+  --header-offset: 150px;
 }
 
-header h1 {
-    color: white;
-    text-align: center;
-    margin: 0;
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-accent);
+  line-height: 1.3;
+  text-align: center;
+}
+
+h1 {
+  margin-top: var(--space-xl);
+  font-size: 1.75rem;
+}
+
+h2 {
+  margin-top: var(--space-xl);
+  font-size: 1.35rem;
+}
+
+h3 {
+  margin-top: var(--space-lg);
+  font-size: 1.1rem;
+}
+
+/* [TBD] Body copy is left-aligned here because long paragraphs are hard to
+   read when centred. To return to the original all-centred look, change the
+   next declaration to "text-align: center". */
+p {
+  text-align: left;
+}
+
+/* [TBD] The old file carried a global "input { border: 2px solid ... }" rule
+   from the removed login form. Style inputs when you actually add one. */
+
+/* ==========================================================================
+   3. Header shell
+   [SYNC] Must stay in step with the identical header markup on all 4 pages.
+   ========================================================================== */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-bar-bg);
+}
+
+.brand {
+  margin: 0;
+  color: var(--color-bar-text);
+  font-size: 1.125rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 header nav ul {
-    list-style: none;
-    display: flex;        /* 横向排列 */
-    justify-content: center;
-    margin: 10px 0 0 0;
-    padding: 0;
-}
-
-header nav li {
-    margin: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs) var(--space-sm);
+  margin-top: var(--space-sm);
+  padding: 0;
 }
 
 header nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 4px;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  color: var(--color-bar-text);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 header nav a:hover {
-    background-color: #555;
+  background-color: var(--color-bar-hover);
 }
 
-/* [STRUCT] A second, duplicate "body { padding-top: 120px }" rule used to live
-   here. It was removed: the two copies were fighting each other, and the header
-   is sticky now, so no fixed-offset compensation is needed at all. */
-
-html {
-    scroll-behavior: smooth; /* 平滑滚动 */
-}
-section {
-  scroll-margin-top: 130px;
-
+/* The current page is marked with aria-current="page" in the HTML.
+   The old stylesheet had no active-page indicator at all. */
+header nav a[aria-current="page"] {
+  background-color: var(--color-accent);
 }
 
-/* ====== titles ====== */
-h1 {
-  color: #0078d7;       /* 蓝色标题 */
-  text-align: center;   /* 居中对齐 */
-  margin-top: 50px;
-}
-h2 {
-  color: #0078d7;       /* 蓝色标题 */
-  text-align: center;   /* 居中对齐 */
-  margin-top: 50px;
-}
-h3 {
-  color: #0078d7;       /* 蓝色标题 */
-  text-align: center;   /* 居中对齐 */
-  margin-top: 50px;
-}
-/*nav*/
-nav {
-    top: 0;            /* 距离顶部 0 */
-    left: 0;           /* 左边界对齐 */
-    width: 100%;       /* 横向铺满窗口 */
-    background-color: #333;
-    z-index: 1000;     /* 确保在其他内容上方 */
-    padding: 10px 0;
-}
-nav a {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 4px;
-}
-nav ul {
-    list-style: none;           /* 去掉默认圆点 */
-    display: flex;              /* 横向排列 */
-    justify-content: center;    /* 居中对齐 */
-    margin: 0;
-    padding: 0;
-}
-nav a:hover {
-    background-color: #45a049;
+/* ==========================================================================
+   4. Language switcher
+   ========================================================================== */
+.lang-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
 }
 
-/* ====== buttons ====== */
-
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+.lang-switcher button {
+  padding: 6px 12px;
+  border: 1px solid var(--color-bar-text);
+  border-radius: var(--radius);
+  background-color: transparent;
+  color: var(--color-bar-text);
+  font-family: inherit;
+  font-size: 0.875rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-button:hover {
-  background-color: #005bb5; /* 鼠标悬停时变色 */
-}
-.btn-center {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #0078d7;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+
+.lang-switcher button:hover {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
-input{
-    display: block;
-    margin: 0;
-    padding: 10px 20px;
-    border: 2px solid #0078d7;
-    border-radius: 6px;
-    font-size: 16px;
-}
-/* ====== paragraphs ====== */
-p{
-    text-align: center;
-    font-size: 16px;
+/* [TODO] Not in use yet - i18n.js starts marking the active language button in
+   a later phase. */
+.lang-switcher button[aria-current="true"] {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
-
-/* ====== login box ====== */
-.login-box{
-    text-align: center;
-    border: 2px solid #0078d7;
-    border-radius: 10px;
-    padding: 20px;
-    width: 300px;
-    margin: 50px auto;
-    background-color: #ffffff;
-}
-
-.login-title {
-  text-align: center;   /* 水平居中 */
-  font-size: 18px;      /* 字体大一点 */
-  font-weight: bold;    /* 加粗 */
-  color: #0078d7;       /* 蓝色，与整体风格统一 */
-  margin-bottom: 10px;  /* 和下面输入框保持一点间距 */
-}
-
-.login-btns {
-    display: inline-block;
-    margin: 20px 10px; /* 左右留点间距 */
-    padding: 10px 20px;
-    background-color: #759bd4;
-    border: none;
-    border-radius: 6px;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-wrap {
-    display: flex;
-    justify-content: center;
-    gap: 20px; /* 按钮间距 */
-}
-/* 单行输入框布局 —— 横排对齐关键 */
-.input-wrap {
-  display: flex;              /* 横向排列 */
-  align-items: center;        /* 垂直居中对齐（中线对齐） */
-  justify-content: flex-start;/* 从左到右排列，不自动拉开 */
-  margin: 8px 0;
-}
-
-/* 左侧标签 */
-.input-wrap label {
-  width: 60px;                /* 固定宽度，这样“账号”和“密码”能对齐 */
-  text-align: right;          /* 标签文字右对齐 */
-  margin-right: 10px;         /* 标签与输入框之间留点空隙 */
-  font-weight: bold;
-}
-
-/* 右侧输入框 */
-.input-wrap input {
-  flex: 1;                    /* 自动占满剩余空间 */
-  padding: 6px 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 14px;
-}
-
-/* ==============================================================
-   Skeleton additions
-   [STRUCT] Minimal styling for the new shell (skip link, brand,
-   language switcher, page container, footer) plus the elements the
-   page skeletons use (.avatar, .btn, .empty-state, ...).
-   Without these the shell would render as unstyled text and the
-   language buttons would be invisible on the dark header.
-   [TODO] Phase 4 consolidates this with the rules above, removes the
-   now-unused .login-box / .login-btns / .btn-center / .input-wrap /
-   .btn-wrap blocks and the global input rule, unifies the two
-   conflicting nav link styles (white vs green), and adds the
-   responsive breakpoints.
-   ============================================================== */
-
-/* ---- skip link: off-screen until it receives keyboard focus ---- */
+/* ==========================================================================
+   5. Skip link
+   ========================================================================== */
 .skip-link {
   position: absolute;
   top: 0;
   left: -9999px;
   z-index: 2000;
-  padding: 10px 16px;
-  background-color: #0078d7;
-  color: #ffffff;
+  padding: var(--space-sm) var(--space-md);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
 }
 
 .skip-link:focus {
   left: 0;
 }
 
-/* ---- header brand / site name ---- */
-.brand {
-  color: #ffffff;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-/* ---- language switcher ----
-   [TODO] The [aria-current="true"] rule is not in use yet; i18n.js
-   starts marking the active button in a later phase. */
-.lang-switcher {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.lang-switcher button {
-  padding: 6px 12px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-  background-color: transparent;
-  color: #ffffff;
-  font-size: 14px;
-}
-
-.lang-switcher button:hover {
-  background-color: #0078d7;
-}
-
-.lang-switcher button[aria-current="true"] {
-  background-color: #0078d7;
-  border-color: #0078d7;
-}
-
-/* ---- page container ----
-   Without this the content would run edge to edge. */
+/* ==========================================================================
+   6. Page container
+   ========================================================================== */
 main {
-  max-width: 960px;
+  max-width: var(--content-width);
   margin: 0 auto;
-  padding: 24px 16px 48px;
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
 }
 
-/* ---- hero ---- */
+/* Anchor links land below the sticky header instead of underneath it. */
+section {
+  scroll-margin-top: var(--header-offset);
+}
+
+/* ==========================================================================
+   7. Hero
+   ========================================================================== */
 .avatar {
   display: block;
   width: 120px;
   height: 120px;
-  margin: 0 auto 16px;
-  border: 2px dashed #9aa5b1;
+  margin: 0 auto var(--space-md);
+  border: 2px dashed #9aa5b1; /* [TBD] placeholder look - swap in your image */
   border-radius: 50%;
-  background-color: #dfe3e8;
+  background-color: var(--color-border);
 }
 
 .nickname,
@@ -308,72 +238,185 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
-  margin-top: 24px;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
 }
 
-/* ---- buttons and links ----
-   [TODO] Deliberately simple. The visual style is still [TBD]. */
+/* ==========================================================================
+   8. Buttons and links
+   ========================================================================== */
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-radius: 6px;
-  background-color: #0078d7;
-  color: #ffffff;
-  font-size: 16px;
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius);
+  background-color: var(--color-accent);
+  color: var(--color-surface);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .btn:hover {
-  background-color: #005bb5;
+  background-color: var(--color-accent-hover);
+  border-color: var(--color-accent-hover);
 }
 
 .btn-secondary {
-  border: 2px solid #0078d7;
-  background-color: #ffffff;
-  color: #0078d7;
+  background-color: var(--color-surface);
+  color: var(--color-accent);
 }
 
 .btn-secondary:hover {
-  background-color: #e6f0fb;
+  background-color: var(--color-accent-soft);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .text-link {
-  color: #0078d7;
+  color: var(--color-accent);
   text-decoration: underline;
 }
 
-/* ---- empty states ----
-   Shown on purpose while a section has no real content yet, so the
-   page reads as "not finished" rather than as "broken". */
-.empty-state {
-  color: #6b7280;
-  font-style: italic;
+/* ==========================================================================
+   9. Content blocks used by the commented-out templates
+   [TODO] None of these are rendered yet. They are styled now so that
+   uncommenting a template in the HTML works without touching the CSS.
+   ========================================================================== */
+.project-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
 }
 
-/* ---- footer ---- */
+.project-card {
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-surface);
+}
+
+.project-tech {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.timeline-entry {
+  margin-top: var(--space-md);
+  padding: var(--space-md);
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-surface);
+}
+
+.timeline-period {
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+}
+
+.social-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+/* ==========================================================================
+   10. Empty states
+   Shown on purpose while a section has no real content yet, so a page reads as
+   "not finished" rather than as "broken".
+   ========================================================================== */
+.empty-state {
+  color: var(--color-text-muted);
+  font-style: italic;
+  text-align: center;
+}
+
+/* ==========================================================================
+   11. Footer
+   [SYNC] Must stay in step with the identical footer markup on all 4 pages.
+   ========================================================================== */
 footer {
-  padding: 24px 16px;
-  background-color: #333333;
-  color: #ffffff;
+  padding: var(--space-lg) var(--space-md);
+  background-color: var(--color-bar-bg);
+  color: var(--color-bar-text);
   text-align: center;
 }
 
 footer p {
-  margin: 4px 0;
+  margin: var(--space-xs) 0;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.95rem;
 }
 
 .back-to-top {
   display: inline-block;
-  margin-top: 8px;
-  color: #ffffff;
+  margin-top: var(--space-sm);
+  color: var(--color-bar-text);
   text-decoration: underline;
 }
 
-/* ---- keyboard focus ----
-   The original stylesheet only had :hover states, which left keyboard
-   users with no visible focus indicator at all. */
+/* ==========================================================================
+   12. Keyboard focus
+   The old stylesheet only had :hover states, so keyboard users had no visible
+   focus indicator anywhere.
+   ========================================================================== */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid #ffb703;
+  outline: 3px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+/* ==========================================================================
+   13. Responsive
+   Mobile first: everything above is the small-screen layout.
+   ========================================================================== */
+@media (min-width: 768px) {
+  :root {
+    --header-offset: 72px;
+  }
+
+  /* brand, navigation and language switcher share a single row */
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  header nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+  }
+
+  header nav ul,
+  .lang-switcher {
+    margin-top: 0;
+  }
+
+  header nav a {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+
+  main {
+    padding: var(--space-xl) var(--space-lg);
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  :root {
+    --content-width: 1040px;
+  }
 }
