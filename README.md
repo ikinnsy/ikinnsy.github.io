@@ -12,7 +12,7 @@ anything that still needs input - see [Comment convention](#comment-convention).
 
 | Path | What it is |
 | --- | --- |
-| `index.html` | Home: hero, short about, featured projects, contact call to action |
+| `index.html` | Landing page: identity, a rotating motto, and one link card per subpage |
 | `about.html` | Bio, skills, timeline |
 | `projects.html` | Project list |
 | `contact.html` | E-mail and other links |
@@ -21,8 +21,8 @@ anything that still needs input - see [Comment convention](#comment-convention).
 | `assets/img/avatar.jpg` | Portrait shown in the hero |
 | `assets/css/reset.css` | Reset. Unchanged since the first commit. |
 | `assets/css/style.css` | The only stylesheet: tokens plus numbered sections |
-| `assets/js/main.js` | Page behaviour (footer year). Every lookup is guarded. |
-| `assets/js/i18n.js` | Translation loader for en / zh / ja |
+| `assets/js/main.js` | Page behaviour: footer year plus the cursor glow. Every lookup is guarded. |
+| `assets/js/i18n.js` | Translation loader for en / zh / ja. An array value picks one entry at random. |
 | `locales/en.json` `zh.json` `ja.json` | UI strings. Identical key sets in all three. |
 | `robots.txt` `sitemap.xml` | Crawler metadata |
 
@@ -84,6 +84,27 @@ add a string:
 
 The attribute form is a plain prefix, so it maps one-to-one onto whatever
 attribute you want filled and needs no extra configuration.
+
+## Home page behaviour
+
+Two things on `index.html` come from code rather than from markup:
+
+- **Rotating motto.** `home.mottos` is an **array** in each locale file, and
+  `i18n.js` shows one random entry per page load. Edit the arrays in all three
+  files to change the set. They do not have to be the same length, but keeping
+  them aligned makes them easier to maintain.
+- **Cursor glow.** `initCursorGlow()` in `main.js` trails a soft blob behind the
+  pointer, eased by a factor of `GLOW_EASE` (0.08). It is styled by `.cursor-glow`
+  in section 14 of `style.css`. The blob sits at `z-index: 0` while `main` and
+  `footer` are lifted to `z-index: 1`, so it is painted **underneath** the content
+  and can never reduce text contrast. It is skipped when the visitor prefers
+  reduced motion, and it stays invisible on touch devices. Only `index.html`
+  contains the element; copy `<div class="cursor-glow" aria-hidden="true"></div>`
+  into another page to enable it there.
+
+The three link cards reuse `about.heading`, `projects.heading` and
+`contact.heading` as their `<h2>`, so their wording always matches the target
+page's own `<h1>`.
 
 ## Known limitations
 

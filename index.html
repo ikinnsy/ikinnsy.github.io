@@ -32,6 +32,12 @@
 
     <body id="top">
 
+        <!-- [STRUCT] Cursor glow: styled in section 14 of style.css, driven by
+             initCursorGlow() in main.js. aria-hidden + pointer-events:none, so it is
+             purely decorative. Only this landing page has it; add the same element
+             to another page if you want the effect there too. -->
+        <div class="cursor-glow" aria-hidden="true"></div>
+
         <!-- [EDIT MAP] ==================================================================
              Nothing on this page still needs input. The content is filled in.
 
@@ -82,9 +88,9 @@
             </nav>
         </header>
         <main id="main">
-            <!-- [STRUCT] Home page order: hero -> about brief -> featured projects
-                 -> contact call to action. Each section can be reordered or
-                 removed on its own; they do not depend on each other. -->
+            <!-- [STRUCT] Landing page: identity + a rotating motto + three links.
+                 All substantive content lives on about.html, projects.html and
+                 contact.html; this page only points at them. -->
 
             <section id="hero">
                 <!-- Alt text comes from hero.avatarAlt. The alt="" below is the no-JS
@@ -96,52 +102,44 @@
 
                 <p class="nickname" data-i18n="hero.nickname">Kinnsy</p>
 
-                <p class="tagline" data-i18n="hero.tagline">A life science student interested in applied mathematics and mathematical modeling, currently compiling a handbook of undergraduate mathematics.</p>
+                <!-- home.mottos is an ARRAY in the locale files, so i18n.js shows one
+                     random entry on every page load. The text here is just the no-JS
+                     fallback. -->
+                <p class="motto" data-i18n="home.mottos">Because it is there.</p>
 
-                <!-- [SYNC] In-page link to the projects section further down. -->
+                <!-- Both buttons are real links to subpages. -->
                 <div class="cta-row">
-                    <a class="btn" href="#projects-featured" data-i18n="hero.ctaProjects">View Projects</a>
+                    <a class="btn" href="./projects.html" data-i18n="hero.ctaProjects">View Projects</a>
                     <a class="btn btn-secondary" href="./contact.html" data-i18n="hero.ctaContact">Get in Touch</a>
                 </div>
             </section>
 
-            <!-- [STRUCT] Short introduction. The full biography lives on about.html. -->
-            <section id="about-brief">
-                <h2 data-i18n="about.heading">About</h2>
-
-                <p data-i18n="hero.intro">I'm from China, currently an undergraduate in the Department of Life Science and Technology, School of Life Science and Technology, Institute of Science Tokyo, Japan, expecting to graduate in March 2029. Interested in applied mathematics, mathematical modeling, and interdisciplinary areas between biology and mathematics; currently compiling a handbook of undergraduate mathematics covering topics such as calculus, linear algebra, complex numbers, probability and statistics, and differential equations.</p>
-
-                <p><a class="text-link" href="./about.html" data-i18n="about.more">Read more</a></p>
-            </section>
-
-            <!-- [STRUCT] Featured projects. One entry so far. To add another, copy the
-                 <article class="project-card"> block, give it its own keys
-                 (projects.item2.*) and add those keys to all three locale files. -->
-            <section id="projects-featured">
-                <h2 data-i18n="projects.heading">Projects</h2>
-
-                <div class="project-grid">
-                    <article class="project-card">
-                        <h3 data-i18n="projects.item1.title">Handbook of Undergraduate Mathematics</h3>
-                        <p data-i18n="projects.item1.desc">An ongoing handbook covering calculus, linear algebra, complex numbers, probability and statistics, and differential equations. Written in LaTeX and maintained in a private GitHub repository. Public release planned after completion.</p>
-                        <p class="project-tech" data-i18n="projects.item1.tech">LaTeX, Git / GitHub</p>
-                    </article>
-                </div>
-
-                <!-- [TODO] There is no public link yet because the repository is private.
-                     When you publish it, add a link and the projects.item1.link key:
-                    <p><a class="text-link" href="https://github.com/ikinnsy/REPO"
-                          data-i18n="projects.item1.link">View project</a></p>
-                -->
-            </section>
-
-            <!-- [STRUCT] Contact call to action. Full details live on contact.html. -->
-            <section id="contact-cta">
-                <h2 data-i18n="contact.heading">Contact</h2>
-
-                <p data-i18n="contact.emailNote">My e-mail address is public. Feel free to reach out directly.</p>
-
-                <p><a class="text-link" href="mailto:kin.shenyan@gmail.com">kin.shenyan@gmail.com</a></p>
+            <!-- [STRUCT] The only content on this page: one card per subpage. A card is
+                 a single <a>, so the whole card is clickable and keyboard focusable.
+                 The arrow is drawn by .nav-card::after in style.css - no markup, no
+                 translation. Card headings reuse about.heading / projects.heading /
+                 contact.heading, so the wording matches each target page's own <h1>. -->
+            <section id="explore">
+                <ul class="nav-cards">
+                    <li>
+                        <a class="nav-card" href="./about.html">
+                            <h2 data-i18n="about.heading">About</h2>
+                            <p data-i18n="home.cardAbout">Who I am, what I study, and what I am working on.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-card" href="./projects.html">
+                            <h2 data-i18n="projects.heading">Projects</h2>
+                            <p data-i18n="home.cardProjects">The projects I am working on, including a handbook of undergraduate mathematics.</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="nav-card" href="./contact.html">
+                            <h2 data-i18n="contact.heading">Contact</h2>
+                            <p data-i18n="home.cardContact">How to reach me.</p>
+                        </a>
+                    </li>
+                </ul>
             </section>
         </main>
 

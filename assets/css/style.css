@@ -235,12 +235,19 @@ section {
 }
 
 .nickname,
-.tagline {
+.motto {
   text-align: center;
 }
 
 .nickname {
   font-weight: bold;
+}
+
+/* The rotating motto in the hero: a pull-quote rather than body copy. */
+.motto {
+  margin-top: var(--space-md);
+  color: var(--color-text-muted);
+  font-style: italic;
 }
 
 .cta-row {
