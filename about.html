@@ -41,8 +41,13 @@
                meta.about.title          browser tab title         EDIT, I18N
                meta.about.description    search result summary     EDIT, I18N
                site.brand                name / handle in header   EDIT, I18N
-               about.heading             page heading              EDIT, I18N
-               page body                 bio, skills, timeline     TODO
+               about.heading             page h1                   EDIT, I18N
+               about.bio                 bio paragraph             EDIT, I18N
+               about.skills.heading      skills heading            EDIT, I18N
+               about.skills.empty        skills empty state        EDIT, I18N
+               about.timeline.heading    timeline heading          EDIT, I18N
+               about.timeline.empty      timeline empty state      EDIT, I18N
+               timeline entries          real entries              TODO
 
              Markers: [EDIT] fill me in | [TODO] content comes later
                       [TBD] intentionally undecided
@@ -84,11 +89,47 @@
             </nav>
         </header>
         <main id="main">
-            <!-- [TODO] This page is still a placeholder. It gets real sections in a
-                 later phase: bio -> skills -> timeline. The empty state below is
-                 deliberately visible and honest rather than pretending to be full. -->
-            <h1 data-i18n="about.heading">About</h1>
-            <p class="empty-state" data-i18n="common.placeholder">This page is under construction.</p>
+            <!-- [STRUCT] About page order: bio -> skills -> timeline.
+                 Each section stands alone and can be removed on its own. -->
+
+            <section id="bio">
+                <h1 data-i18n="about.heading">About</h1>
+
+                <!-- [EDIT] Two to four sentences. The short version lives on
+                     index.html. i18n key: about.bio -->
+                <p data-i18n="about.bio">Write two to four sentences about yourself here.</p>
+            </section>
+
+            <!-- [STRUCT] Skills. Structure only for now. -->
+            <section id="skills">
+                <h2 data-i18n="about.skills.heading">Skills</h2>
+
+                <!-- [TODO] Delete this empty state and add your own list once you
+                     know what to show. A simple <ul> works well here.
+                     i18n key: about.skills.empty -->
+                <p class="empty-state" data-i18n="about.skills.empty">Skills will be listed here.</p>
+            </section>
+
+            <!-- [STRUCT] Timeline. Structure only - there are no real entries yet,
+                 and none may be invented. -->
+            <section id="timeline">
+                <h2 data-i18n="about.timeline.heading">Timeline</h2>
+
+                <!-- [TODO] Delete this empty state once you have real entries.
+                     i18n key: about.timeline.empty -->
+                <p class="empty-state" data-i18n="about.timeline.empty">No entries yet.</p>
+
+                <!-- [TODO] Entry template. Copy this whole block once per entry,
+                     uncomment it, and replace every placeholder value.
+                     The matching i18n keys (about.timeline.item1.*) already exist in
+                     locales/en.json, zh.json and ja.json.
+                <article class="timeline-entry">
+                    <p class="timeline-period" data-i18n="about.timeline.item1.period">20XX - 20XX</p>
+                    <h3 data-i18n="about.timeline.item1.title">Entry title</h3>
+                    <p data-i18n="about.timeline.item1.desc">Short description of this entry.</p>
+                </article>
+                -->
+            </section>
         </main>
 
         <!-- [SYNC] Footer shell: must stay identical on all 4 pages. -->

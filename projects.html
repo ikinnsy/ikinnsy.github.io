@@ -41,7 +41,9 @@
                meta.projects.title       browser tab title         EDIT, I18N
                meta.projects.description search result summary     EDIT, I18N
                site.brand                name / handle in header   EDIT, I18N
-               projects.heading          page heading              EDIT, I18N
+               projects.heading          page h1                   EDIT, I18N
+               projects.intro            intro paragraph           EDIT, I18N
+               projects.empty            empty state               EDIT, I18N
                project cards             real project items        TODO
 
              Markers: [EDIT] fill me in | [TODO] content comes later
@@ -84,11 +86,38 @@
             </nav>
         </header>
         <main id="main">
-            <!-- [TODO] This page is still a placeholder. It gets the real project list
-                 in a later phase. The empty state below is deliberately visible and
-                 honest rather than pretending the portfolio is full. -->
-            <h1 data-i18n="projects.heading">Projects</h1>
-            <p class="empty-state" data-i18n="projects.empty">Portfolio coming soon.</p>
+            <!-- [STRUCT] Projects page: intro -> list.
+                 There are no real items yet, so the empty state below is what a
+                 visitor currently sees. -->
+
+            <section id="projects-intro">
+                <h1 data-i18n="projects.heading">Projects</h1>
+
+                <!-- [EDIT] One or two lines about what belongs on this page.
+                     i18n key: projects.intro -->
+                <p data-i18n="projects.intro">One or two lines about the work you want to show here.</p>
+            </section>
+
+            <!-- [STRUCT] Project list. Structure only. -->
+            <section id="projects-list">
+                <!-- [TODO] Friendly empty state. Delete it once you have real items.
+                     i18n key: projects.empty -->
+                <p class="empty-state" data-i18n="projects.empty">Portfolio coming soon.</p>
+
+                <!-- [TODO] Card template. Copy this whole <li> once per project,
+                     uncomment the list, and replace every placeholder value.
+                     The matching i18n keys (projects.item1.*) already exist in
+                     locales/en.json, zh.json and ja.json.
+                <ul class="project-grid">
+                    <li class="project-card">
+                        <h3 data-i18n="projects.item1.title">Project One</h3>
+                        <p data-i18n="projects.item1.desc">Short description of the project.</p>
+                        <p class="project-tech" data-i18n="projects.item1.tech">Tech stack: TBD</p>
+                        <a class="text-link" href="https://example.com" data-i18n="projects.item1.link">View project</a>
+                    </li>
+                </ul>
+                -->
+            </section>
         </main>
 
         <!-- [SYNC] Footer shell: must stay identical on all 4 pages. -->

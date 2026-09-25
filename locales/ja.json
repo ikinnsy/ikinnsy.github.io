@@ -11,7 +11,6 @@
     "site.brand": "あなたの名前",
 
     "common.skipLink": "本文へスキップ",
-    "common.placeholder": "このページは準備中です。",
 
     "nav.home": "ホーム",
     "nav.about": "自己紹介",
@@ -39,8 +38,17 @@
 
     "about.heading": "自己紹介",
     "about.more": "もっと見る",
+    "about.bio": "ここに自分のことを2〜4文で書きます。",
+    "about.skills.heading": "スキル",
+    "about.skills.empty": "スキルは後で追加します。",
+    "about.timeline.heading": "経歴",
+    "about.timeline.empty": "まだ項目がありません。",
+    "about.timeline.item1.period": "20XX - 20XX",
+    "about.timeline.item1.title": "項目のタイトル",
+    "about.timeline.item1.desc": "この項目の短い説明。",
 
     "projects.heading": "作品",
+    "projects.intro": "このページで見せたい作品について1〜2行で書きます。",
     "projects.empty": "作品集は準備中です。",
     "projects.item1.title": "プロジェクト1",
     "projects.item1.desc": "プロジェクトの短い説明。",
@@ -48,7 +56,12 @@
     "projects.item1.link": "プロジェクトを見る",
 
     "contact.heading": "連絡",
+    "contact.intro": "どのように連絡してほしいかを1〜2行で書きます。",
+    "contact.emailLabel": "メール",
     "contact.emailNote": "メールアドレスはまだ公開していません。下記はプレースホルダーです。",
+    "contact.social.heading": "その他のリンク",
+    "contact.social.empty": "リンクは後で追加します。",
+    "contact.social.item1.label": "リンク例",
 
     "footer.backToTop": "トップへ戻る",
     "footer.updated": "最終更新：未定"

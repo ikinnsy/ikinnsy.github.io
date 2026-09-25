@@ -11,7 +11,6 @@
     "site.brand": "你的名字",
 
     "common.skipLink": "跳到主要内容",
-    "common.placeholder": "本页面正在施工中。",
 
     "nav.home": "首页",
     "nav.about": "关于",
@@ -39,8 +38,17 @@
 
     "about.heading": "关于",
     "about.more": "了解更多",
+    "about.bio": "在这里写两到四句关于你自己的介绍。",
+    "about.skills.heading": "技能",
+    "about.skills.empty": "技能列表待补充。",
+    "about.timeline.heading": "经历",
+    "about.timeline.empty": "暂无条目。",
+    "about.timeline.item1.period": "20XX - 20XX",
+    "about.timeline.item1.title": "条目标题",
+    "about.timeline.item1.desc": "该条目的简短描述。",
 
     "projects.heading": "作品",
+    "projects.intro": "用一两句话说明这个页面想展示什么样的作品。",
     "projects.empty": "作品集即将上线。",
     "projects.item1.title": "项目一",
     "projects.item1.desc": "项目的简短描述。",
@@ -48,7 +56,12 @@
     "projects.item1.link": "查看项目",
 
     "contact.heading": "联系",
+    "contact.intro": "用一两句话说明你希望别人如何联系你。",
+    "contact.emailLabel": "邮箱",
     "contact.emailNote": "我的邮箱暂未公开，下方地址仅为占位示例。",
+    "contact.social.heading": "其他链接",
+    "contact.social.empty": "链接待补充。",
+    "contact.social.item1.label": "示例链接",
 
     "footer.backToTop": "返回顶部",
     "footer.updated": "最后更新：待定"

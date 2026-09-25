@@ -41,8 +41,13 @@
                meta.contact.title        browser tab title         EDIT, I18N
                meta.contact.description  search result summary     EDIT, I18N
                site.brand                name / handle in header   EDIT, I18N
-               contact.heading           page heading              EDIT, I18N
+               contact.heading           page h1                   EDIT, I18N
+               contact.intro             intro paragraph           EDIT, I18N
+               contact.emailLabel        e-mail heading            EDIT, I18N
+               contact.emailNote         note above the address    EDIT, I18N
                contact e-mail            mailto link value         EDIT
+               contact.social.heading    links heading             EDIT, I18N
+               contact.social.empty      links empty state         EDIT, I18N
                social links              outbound links            TODO
 
              Markers: [EDIT] fill me in | [TODO] content comes later
@@ -85,15 +90,46 @@
             </nav>
         </header>
         <main id="main">
-            <!-- [TODO] This page is still a placeholder. It gets the real contact
-                 details in a later phase. The address below is a fake placeholder:
-                 contact details are NOT public yet and must not be published. -->
-            <h1 data-i18n="contact.heading">Contact</h1>
-            <p class="empty-state" data-i18n="common.placeholder">This page is under construction.</p>
-            <!-- [EDIT] Replace example@email.com only when you decide to publish it.
-                 [TODO] A working contact form needs a backend or a third-party
-                 service - out of scope for this skeleton. -->
-            <p><a class="text-link" href="mailto:example@email.com">example@email.com</a></p>
+            <!-- [STRUCT] Contact page: intro -> e-mail -> other links.
+                 Contact details are NOT public yet, so every value here is a
+                 placeholder. Nothing on this page is a real address. -->
+
+            <section id="contact-intro">
+                <h1 data-i18n="contact.heading">Contact</h1>
+
+                <!-- [EDIT] One or two lines about how you prefer to be contacted.
+                     i18n key: contact.intro -->
+                <p data-i18n="contact.intro">One or two lines about how you prefer to be contacted.</p>
+            </section>
+
+            <section id="contact-email">
+                <h2 data-i18n="contact.emailLabel">Email</h2>
+
+                <!-- [EDIT] i18n key: contact.emailNote -->
+                <p data-i18n="contact.emailNote">My e-mail address is not public yet. The address below is a placeholder.</p>
+
+                <!-- [EDIT] Replace example@email.com only when you decide to publish
+                     it. [TODO] A working contact form needs a backend or a third-party
+                     service - out of scope for this skeleton. -->
+                <p><a class="text-link" href="mailto:example@email.com">example@email.com</a></p>
+            </section>
+
+            <!-- [STRUCT] Outbound links. Structure only - nothing is published yet. -->
+            <section id="contact-social">
+                <h2 data-i18n="contact.social.heading">Elsewhere</h2>
+
+                <!-- [TODO] Delete this empty state once you have real links.
+                     i18n key: contact.social.empty -->
+                <p class="empty-state" data-i18n="contact.social.empty">Links will be added here.</p>
+
+                <!-- [TODO] Link template. Copy this whole <li> once per link, uncomment
+                     the list, and replace the label and the href. Only the label is
+                     translated - a URL is the same in every language.
+                <ul class="social-list">
+                    <li><a class="text-link" href="https://example.com" data-i18n="contact.social.item1.label">Example link</a></li>
+                </ul>
+                -->
+            </section>
         </main>
 
         <!-- [SYNC] Footer shell: must stay identical on all 4 pages. -->

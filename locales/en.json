@@ -11,7 +11,6 @@
     "site.brand": "Your Name",
 
     "common.skipLink": "Skip to content",
-    "common.placeholder": "This page is under construction.",
 
     "nav.home": "Home",
     "nav.about": "About",
@@ -39,8 +38,17 @@
 
     "about.heading": "About",
     "about.more": "Read more",
+    "about.bio": "Write two to four sentences about yourself here.",
+    "about.skills.heading": "Skills",
+    "about.skills.empty": "Skills will be listed here.",
+    "about.timeline.heading": "Timeline",
+    "about.timeline.empty": "No entries yet.",
+    "about.timeline.item1.period": "20XX - 20XX",
+    "about.timeline.item1.title": "Entry title",
+    "about.timeline.item1.desc": "Short description of this entry.",
 
     "projects.heading": "Projects",
+    "projects.intro": "One or two lines about the work you want to show here.",
     "projects.empty": "Portfolio coming soon.",
     "projects.item1.title": "Project One",
     "projects.item1.desc": "Short description of the project.",
@@ -48,7 +56,12 @@
     "projects.item1.link": "View project",
 
     "contact.heading": "Contact",
+    "contact.intro": "One or two lines about how you prefer to be contacted.",
+    "contact.emailLabel": "Email",
     "contact.emailNote": "My e-mail address is not public yet. The address below is a placeholder.",
+    "contact.social.heading": "Elsewhere",
+    "contact.social.empty": "Links will be added here.",
+    "contact.social.item1.label": "Example link",
 
     "footer.backToTop": "Back to top",
     "footer.updated": "Last updated: TBD"
